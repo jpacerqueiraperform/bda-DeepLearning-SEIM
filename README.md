@@ -1,14 +1,19 @@
 
 
-   New SEIM project for DAZN Group
+   New SIEM project for Group
 
 
     - On-premise work for DeepLearning 
 
-      - Setup of H2O Deep Learning
-         - AUTOML for H2o
+    -  - Setup of H2O Deep Learning
+    -  -  - AUTOML for H2o
 
-      - Setup of Keras for Python 3 - Anaconda 5.1.0.1
+    -  - Setup of Keras for Python 3 - Anaconda 5.1.0.1
 
 
+    - - SIEM evaluation process adopted
+   
+    - - - process described in link : https://blog.easysol.net/classifying-phishing-urls/ 
+ 
+    ![alt text](https://github.com/jpacerqueiraperform/bda-DeepLearning-SEIM/blob/master/images/phishing_process.png)   
 
