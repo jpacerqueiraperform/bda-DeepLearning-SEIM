@@ -14,6 +14,6 @@
     - - SIEM evaluation process adopted
    
     - - - process described in link : https://blog.easysol.net/classifying-phishing-urls/ 
- 
-    ![alt text](https://github.com/jpacerqueiraperform/bda-DeepLearning-SEIM/blob/master/images/phishing_process.png)   
+
+![alt text](images/phishing_process.png?raw=true "Process SIEM"))   
 
