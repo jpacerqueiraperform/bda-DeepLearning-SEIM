@@ -1,0 +1,6 @@
+../ScoreDataUDFGBMAVGM17/.idea
+target/classes*
+target/generated-sources*
+target/maven-archiver*
+*.iml
+.idea/*
