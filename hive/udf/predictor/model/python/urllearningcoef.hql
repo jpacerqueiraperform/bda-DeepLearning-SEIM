@@ -1,5 +1,10 @@
 DELETE JAR h2o-genmodel.jar;
 DELETE JAR ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
+/*
+ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/h2o-genmodel.jar;
+ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
+*/
+
 ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/h2o-genmodel.jar;
 ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
 
