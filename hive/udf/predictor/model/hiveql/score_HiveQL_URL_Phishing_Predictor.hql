@@ -1,3 +1,5 @@
+set hive.execution.engine=spark;
+
 DELETE JAR h2o-genmodel.jar;
 DELETE JAR ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
 ADD JAR hdfs:////user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/h2o-genmodel.jar;
@@ -11,14 +13,15 @@ MSCK REPAIR TABLE siem.urltopredict ;
 select * from siem.urltopredict limit 10;
 
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en
+FROM siem.urltopredict where url is not null limit 10000 ;
+
+SELECT url,scoredatav2(urltopredict.url_length,urltopredict.massiveurl,urltopredict.count_at,
+urltopredict.count_dot,urltopredict.url_is_ip,urltopredict.count_dot_com,urltopredict.url_kl_en,
+urltopredict.url_bad_kl_en,urltopredict.url_ks_en,urltopredict.url_bad_ks_en) score_phishing , ynverified
 FROM siem.urltopredict where url is not null limit 10 ;
 
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
-scoredatav2(url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en) score_phishing
-FROM siem.urltopredict where url is not null limit 10 ;
-
-SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
-scoredatav2(url_length,0,1,2,0,1,0.0,0,1.0,0) as score, ynverified as original_phishing
+scoredatav2(12,0,1,2,0,1,0.0,0,1.0,0) as score, ynverified as original_phishing
 FROM siem.urltopredict where url is not null limit 10 ;
 
 SELECT COUNT(DISTINCT url)  from siem.urltopredict  where url is not null group by url ;
@@ -28,7 +31,7 @@ ScoreDataM1UDF
 Error while compiling statement: FAILED: SemanticException [Error 10015]: line 13:12 Arguments length
 mismatch 'url_bad_ks_en': Incorrect number of arguments. scoredata() requires: [url_length, massiveurl, count_at, count_dot, url_is_ip, count_dot_com, url_kl_en, url_bad_kl_en, url_ks_en, url_bad_ks_en, ynverified]
 , in the listed order. Received 11 arguments.
-
+    
 ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/h2o-genmodel.jar;
 ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
 
