@@ -4,7 +4,7 @@ ADD JAR hdfs:////user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML
 ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
 
 CREATE TEMPORARY FUNCTION scoredatav1 AS 'ai.h2o.hive.udf.ScoreDataUDFv1';
-CREATE TEMPORARY FUNCTION scoredatav2 AS 'ai.h2o.hive.udf.ScoreDataUDFv2';
+CREATE TEMPORARY FUNCTION scoredatav2 AS 'ai.h2o.hive.udf.ScoreDataM2UDF';
 
 MSCK REPAIR TABLE siem.urltopredict ;
 select * from siem.urltopredict limit 10;

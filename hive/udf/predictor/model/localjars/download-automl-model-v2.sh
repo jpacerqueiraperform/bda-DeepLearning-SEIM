@@ -6,5 +6,5 @@
 #
 scp siemanalyst@chpbdaodi02.prod.ch.perform.local:~/notebooks/siem/product_model_bin/m20/v2/mojo/h2o-genmodel.jar .
 scp siemanalyst@chpbdaodi02.prod.ch.perform.local:~/notebooks/siem/product_model_bin/m20/v2/mojo/*_AutoML_*.zip .
-mv *_AutoML_*.zip ../src/main/resources/ai/h2o/hive/udf/
+cp *_AutoML_*.zip ../src/main/resources/ai/h2o/hive/udf/
 #

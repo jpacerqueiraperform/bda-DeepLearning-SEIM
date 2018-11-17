@@ -26,7 +26,7 @@ import static hex.genmodel.MojoReaderBackendFactory.CachingStrategy;
 @Description(name="scoredatav2", value="_FUNC_(*) - Returns a score for the given row",
         extended="Example:\n"+"> SELECT scoredata(*) FROM target_data;")
 
-class ScoreDataUDFv2 extends GenericUDF {
+class ScoreDataM2UDF extends GenericUDF {
     private PrimitiveObjectInspector[] inFieldOI;
 
     MojoModel p;
@@ -45,7 +45,7 @@ class ScoreDataUDFv2 extends GenericUDF {
     @Override
     public ObjectInspector initialize(ObjectInspector[] args) throws UDFArgumentException {
         // Get the MOJO as a resource
-        URL mojoURL = ScoreDataUDFv2.class.getResource("StackedEnsemble_AllModels_AutoML_20181116_233709.zip");
+        URL mojoURL = ScoreDataM2UDF.class.getResource("StackedEnsemble_AllModels_AutoML_20181116_233709.zip");
         // Declare r as a MojoReaderBackend
         MojoReaderBackend r;
         // Read the MOJO and assign it to p

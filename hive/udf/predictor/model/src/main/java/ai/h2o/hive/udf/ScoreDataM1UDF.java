@@ -25,7 +25,7 @@ import org.apache.hadoop.mapred.JobConf;
 @Description(name="scoredatav1", value="_FUNC_(*) - Returns a score for the given row",
         extended="Example:\n"+"> SELECT scoredata(*) FROM target_data;")
 
-class ScoreDataUDFv1 extends GenericUDF {
+class ScoreDataM1UDF extends GenericUDF {
     private PrimitiveObjectInspector[] inFieldOI;
 
     MojoModel p;
@@ -44,7 +44,7 @@ class ScoreDataUDFv1 extends GenericUDF {
     @Override
     public ObjectInspector initialize(ObjectInspector[] args) throws UDFArgumentException {
         // Get the MOJO as a resource
-        URL mojoURL = ScoreDataUDFv1.class.getResource("StackedEnsemble_AllModels_AutoML_20181116_125005.zip");
+        URL mojoURL = ScoreDataM1UDF.class.getResource("StackedEnsemble_AllModels_AutoML_20181116_125005.zip");
         // Declare r as a MojoReaderBackend
         MojoReaderBackend r;
         // Read the MOJO and assign it to p
