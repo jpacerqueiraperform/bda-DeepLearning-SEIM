@@ -14,7 +14,7 @@ import junit.framework.Assert;
 public class UDFExampleTest {
   @Test public void testUDFReturnsCorrectValues() throws HiveException {
     // set up the models we need
-    ScoreDataUDF example = new ScoreDataUDF();
+    ScoreDataUDFv1 example = new ScoreDataUDFv1();
 
     //From the test data set:
     // ynverified, url_length, massiveurl, count_at, count_dot, url_is_ip,
