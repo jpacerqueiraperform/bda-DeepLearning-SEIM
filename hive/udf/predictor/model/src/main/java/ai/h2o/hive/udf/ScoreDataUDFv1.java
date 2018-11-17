@@ -22,7 +22,7 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 import org.apache.hadoop.mapred.JobConf;
 
 @UDFType(deterministic = true, stateful = false)
-@Description(name="scoredata", value="_FUNC_(*) - Returns a score for the given row",
+@Description(name="scoredatav1", value="_FUNC_(*) - Returns a score for the given row",
         extended="Example:\n"+"> SELECT scoredata(*) FROM target_data;")
 
 class ScoreDataUDFv1 extends GenericUDF {
@@ -33,7 +33,7 @@ class ScoreDataUDFv1 extends GenericUDF {
 
     @Override
     public String getDisplayString(String[] args) {
-        return "scoredata("+Arrays.asList(p.getNames())+").";
+        return "scoredatav1("+Arrays.asList(p.getNames())+").";
     }
     @Override
     public void configure(MapredContext context) {
@@ -131,7 +131,7 @@ class ScoreDataUDFv1 extends GenericUDF {
                 }
             } else {
                 throw new UDFArgumentException("Incorrect number of arguments." +
-                        "  scoredata() requires: " + Arrays.asList(p.getNames()) + ", in order. Received "
+                        "  scoredatav1() requires: " + Arrays.asList(p.getNames()) + ", in order. Received "
                         +record.length+" arguments.");
             }
         } else { // record == null
