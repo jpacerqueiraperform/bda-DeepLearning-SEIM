@@ -1,19 +1,20 @@
 DELETE JAR h2o-genmodel.jar;
 DELETE JAR ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
-/*
-ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/h2o-genmodel.jar;
-ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
-*/
-
-ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/h2o-genmodel.jar;
+ADD JAR hdfs:////user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/h2o-genmodel.jar;
 ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
 
-CREATE TEMPORARY FUNCTION scoredata AS 'ai.h2o.hive.udf.ScoreDataUDFv1';
+CREATE TEMPORARY FUNCTION scoredatav1 AS 'ai.h2o.hive.udf.ScoreDataUDFv1';
+CREATE TEMPORARY FUNCTION scoredatav2 AS 'ai.h2o.hive.udf.ScoreDataUDFv2';
 
-SELECT url, scoredata(ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en) score_phishing
+MSCK REPAIR TABLE siem.urltopredict ;
+select * from siem.urltopredict limit 10;
+
+SELECT url, scoredatav2(ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en) score_phishing
 FROM siem.urltopredict where url is not null limit 100000 ;
 
-select * from siem.urltopredict limit 10;
+
+
+SELECT COUNT(DISTINCT url)  from siem.urltopredict  where url is not null group by url ;
 
 /*
  , ynverified, url_length, massiveurl, count_at, count_dot, url_is_ip, count_dot_com, url_kl_en, url_bad_kl_en, url_ks_en, url_bad_ks_en
@@ -21,6 +22,9 @@ select * from siem.urltopredict limit 10;
 ;  requires:
   [url_length, massiveurl, count_at, count_dot, url_is_ip, url_kl_en, count_dot_com, url_ks_en]
     predictes : [ynverified],
+
+ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/h2o-genmodel.jar;
+ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML_20181115_150840/ScoreDataUDFAUTOML-1.0-SNAPSHOT.jar;
 
 DELETE FILE testbeforebreak.py;
 ADD FILE hdfs:///user/siemanalyst/python/urllearningcoef.py;
