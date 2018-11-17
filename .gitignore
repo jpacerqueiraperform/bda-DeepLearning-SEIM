@@ -4,3 +4,4 @@
 **/target/*.jar
 **/localjars/*.zip
 **/udf/*.zip
+**/spark_jars/*.jar

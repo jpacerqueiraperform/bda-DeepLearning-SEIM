@@ -26,7 +26,9 @@ import static hex.genmodel.MojoReaderBackendFactory.CachingStrategy;
 @Description(name="scoredatav2", value="_FUNC_(*) - Returns a score for the given row",
         extended="Example:\n"+"> SELECT scoredata(*) FROM target_data;")
 
-class ScoreDataM2UDF extends GenericUDF {
+//Public please! https://community.hortonworks.com/questions/155891/simpleudfexample-and-error-genericudfbridge-cannot.html
+
+public class ScoreDataM2UDF extends GenericUDF {
     private PrimitiveObjectInspector[] inFieldOI;
 
     MojoModel p;

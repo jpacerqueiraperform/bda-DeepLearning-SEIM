@@ -25,7 +25,8 @@ import org.apache.hadoop.mapred.JobConf;
 @Description(name="scoredatav1", value="_FUNC_(*) - Returns a score for the given row",
         extended="Example:\n"+"> SELECT scoredata(*) FROM target_data;")
 
-class ScoreDataM1UDF extends GenericUDF {
+// Public Please! https://community.hortonworks.com/questions/155891/simpleudfexample-and-error-genericudfbridge-cannot.html
+public class ScoreDataM1UDF extends GenericUDF {
     private PrimitiveObjectInspector[] inFieldOI;
 
     MojoModel p;
