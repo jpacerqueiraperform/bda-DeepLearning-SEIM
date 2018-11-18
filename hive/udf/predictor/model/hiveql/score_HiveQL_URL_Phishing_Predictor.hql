@@ -6,6 +6,10 @@ FROM siem.url_mdl_score_predict where url is not null limit 10 ;
 
 SELECT COUNT(DISTINCT url)  from siem.urltopredict  where url is not null group by url ;
 
+SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
+ ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag 
+FROM siem.url_mdl_score_predict where url like "www.google.com%"  limit 10 ;
+
 /*
 ScoreDataM1UDF
 Error while compiling statement: FAILED: SemanticException [Error 10015]: line 13:12 Arguments length
