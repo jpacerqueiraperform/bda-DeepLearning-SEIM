@@ -17,7 +17,7 @@ input_file="hdfs:///user/siemanalyst/data/staged/urltopredict/dt="+process_date
 sql_read_files ="SELECT CAST(urltopredict_files.url AS STRING) AS url, CAST(urltopredict_files.ynverified  AS INT) AS ynverified , CAST(urltopredict_files.url_length  AS INT) AS url_length, CAST(urltopredict_files.massiveurl  AS INT) AS massiveurl ,CAST(urltopredict_files.count_at  AS INT) AS count_at , CAST(urltopredict_files.count_dot  AS INT) AS count_dot, CAST(urltopredict_files.url_is_ip  AS INT) AS url_is_ip, CAST(urltopredict_files.count_dot_com  AS INT) AS count_dot_com, CAST(urltopredict_files.url_kl_en AS DOUBLE) AS url_kl_en, CAST(urltopredict_files.url_bad_kl_en AS INT) AS url_bad_kl_en ,CAST(urltopredict_files.url_ks_en AS DOUBLE) AS url_ks_en ,CAST(urltopredict_files.url_bad_ks_en AS INT) AS url_bad_ks_en FROM urltopredict_files"
 # HiveQL Scoring table Load
 sql_publish = "INSERT INTO TABLE siem.url_mdl_score_predict PARTITION (dt="+process_date+")"+\
-" SELECT  url, ynverified, url_length, massiveurl, count_at, count_dot, url_is_ip, count_dot_com, url_kl_en, url_bad_kl_en, url_ks_en, url_bad_ks_en, scoredatav2(url_length, massiveurl, count_at, count_dot, url_is_ip, count_dot_com, url_kl_en, url_bad_kl_en, url_ks_en, url_bad_ks_en) as mdl_score_phishing FROM urltopredict"
+" SELECT  url, ynverified, url_length, massiveurl, count_at, count_dot, url_is_ip, count_dot_com, url_kl_en, url_bad_kl_en, url_ks_en, url_bad_ks_en, scoredatav1(url_length, massiveurl, count_at, count_dot, url_is_ip, count_dot_com, url_kl_en, url_bad_kl_en, url_ks_en, url_bad_ks_en) as mdl_score_phishing FROM urltopredict"
 
 
 # scoredatav2 requires: [url_length, massiveurl, count_at, count_dot, url_is_ip, count_dot_com, url_kl_en, url_bad_kl_en, url_ks_en, url_bad_ks_en, ynverified]
@@ -26,6 +26,7 @@ sql_publish = "INSERT INTO TABLE siem.url_mdl_score_predict PARTITION (dt="+proc
 # Add Scoring H20AUTOML into HiveContext 
 sparkSession.sql("ADD JAR hdfs:////user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/h2o-genmodel.jar")
 sparkSession.sql("ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/ScoreDataUDFAUTOML-2.0-SNAPSHOT.jar")
+sparkSession.sql("CREATE TEMPORARY FUNCTION scoredatav1 AS 'ai.h2o.hive.udf.ScoreDataM1UDF' ")
 sparkSession.sql("CREATE TEMPORARY FUNCTION scoredatav2 AS 'ai.h2o.hive.udf.ScoreDataM2UDF' ")
 sparkSession.sql("ALTER TABLE siem.url_mdl_score_predict DROP IF EXISTS PARTITION (dt="+process_date+")")
 
@@ -37,6 +38,7 @@ url_toprd_df.registerTempTable("urltopredict_files")
 #
 # Read Cast Variables
 df_cast_structure=sparkSession.sql(sql_read_files)
+df_cast_structure.printSchema()
 df_cast_structure.registerTempTable("urltopredict")
 #
 # Write into Hive
