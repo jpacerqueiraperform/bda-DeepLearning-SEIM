@@ -25,7 +25,7 @@ from pyspark.sql import Window, types
 # Execute SparkSession cleandata.py
 #
 # 
-sc = pyspark.SparkContext(appName="CleanData-SIEM")
+sc = pyspark.SparkContext(appName="CleanData-SIEM-V3")
 sqlContext = SQLContext(sc)
 #
 # -----------------------------------------------------------------------------
