@@ -1,18 +1,14 @@
 set hive.execution.engine=mr;
 
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
- ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag 
-FROM siem.url_mdl_score_predict where url is not null limit 10 ;
-
-SELECT COUNT(DISTINCT url)  from siem.urltopredict  where url is not null group by url ;
-
-
+ ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag
+FROM siem.url_model3_score_predict where url is not null limit 10 ;
 
 
 
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
  ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag
-FROM siem.url_mdl_score_predict where url is not null  limit 80000 ;
+FROM siem.url_model3_score_predict where url is not null  limit 80000 ;
 
 
 
@@ -57,5 +53,4 @@ SELECT TRANSFORM (domain)
 USING '/opt/cloudera/parcels/Anaconda/bin/python3.6 urllearningcoef.py' AS
 (url_length int, massiveurl int, count_at int, count_dot int, url_is_ip int, url_kl_en float, count_dot_com int,url_ks_en float)
 FROM siem.maliciousurls where domain is not null and uri not in(null,'',' ');
-
 */

@@ -11,7 +11,7 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 import org.junit.Test;
 import junit.framework.Assert;
 
-public class UDFExampleTest {
+public class UDFM2Test {
   @Test public void testUDFReturnsCorrectValues() throws HiveException {
     // set up the models we need
     ScoreDataM2UDF example = new ScoreDataM2UDF();
@@ -22,14 +22,13 @@ public class UDFExampleTest {
     ObjectInspector URL_LENGTH = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
     ObjectInspector MASSIVEURL = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
     ObjectInspector COUNT_AT = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
-    ObjectInspector COUNT_DOT = PrimitiveObjectInspectorFactory.javaStringObjectInspector;
-    ObjectInspector URL_IS_IP = PrimitiveObjectInspectorFactory.javaStringObjectInspector;
-    ObjectInspector COUNT_DOT_COM = PrimitiveObjectInspectorFactory.javaDoubleObjectInspector;
-    ObjectInspector URL_KL_EN = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
+    ObjectInspector COUNT_DOT = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
+    ObjectInspector URL_IS_IP = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
+    ObjectInspector COUNT_DOT_COM = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
+    ObjectInspector URL_KL_EN = PrimitiveObjectInspectorFactory.javaDoubleObjectInspector;
     ObjectInspector URL_BAD_KL_EN = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
-    ObjectInspector URL_KS_EN = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
-    ObjectInspector URL_BAD_KS_EN = PrimitiveObjectInspectorFactory.javaIntObjectInspector;
-    JavaDoubleObjectInspector resultInspector = (JavaDoubleObjectInspector)
+    ObjectInspector URL_KS_EN = PrimitiveObjectInspectorFactory.javaDoubleObjectInspector;
+    ObjectInspector URL_BAD_KS_EN = PrimitiveObjectInspectorFactory.javaIntObjectInspector;    JavaDoubleObjectInspector resultInspector = (JavaDoubleObjectInspector)
             example.initialize(new ObjectInspector[]{URL_LENGTH,MASSIVEURL,COUNT_AT,COUNT_DOT,URL_IS_IP,COUNT_DOT_COM,URL_KL_EN,URL_BAD_KL_EN,URL_KS_EN,URL_BAD_KS_EN});
     // test our results
     // Data from first line of test file: 0, 65, 1, 2, 1, 1.4, 6
@@ -121,18 +120,18 @@ $ mvn package
  T E S T S
 -------------------------------------------------------
 Forking command line: /bin/sh -c cd /Users/joao.cerqueira/gitstash/bda/bda_exadata_samples/SAMPLE_IXPBDAOPTA01_TOOLS/jpac-sparklyr/rstudio_jobs/hive_udf_pojo_template && /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/bin/java -jar /Users/joao.cerqueira/gitstash/bda/bda_exadata_samples/SAMPLE_IXPBDAOPTA01_TOOLS/jpac-sparklyr/rstudio_jobs/hive_udf_pojo_template/target/surefire/surefirebooter8454842685365683756.jar /Users/joao.cerqueira/gitstash/bda/bda_exadata_samples/SAMPLE_IXPBDAOPTA01_TOOLS/jpac-sparklyr/rstudio_jobs/hive_udf_pojo_template/target/surefire/surefire6070441649139223708tmp /Users/joao.cerqueira/gitstash/bda/bda_exadata_samples/SAMPLE_IXPBDAOPTA01_TOOLS/jpac-sparklyr/rstudio_jobs/hive_udf_pojo_template/target/surefire/surefire_02256982326777821649tmp
-Running ai.h2o.hive.udf.UDFExampleTest
+Running ai.h2o.hive.udf.UDFM2Test
 log4j:WARN No appenders could be found for logger (org.apache.hadoop.util.Shell).
 log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.417 sec <<< FAILURE!
-testUDFReturnsCorrectValues(ai.h2o.hive.udf.UDFExampleTest)  Time elapsed: 0.361 sec  <<< ERROR!
+testUDFReturnsCorrectValues(ai.h2o.hive.udf.UDFM2Test)  Time elapsed: 0.361 sec  <<< ERROR!
 java.lang.NoClassDefFoundError: Could not initialize class org.apache.hadoop.hive.ql.ErrorMsg
 	at org.apache.hadoop.hive.ql.metadata.HiveException.<init>(HiveException.java:31)
 	at org.apache.hadoop.hive.ql.parse.SemanticException.<init>(SemanticException.java:37)
 	at org.apache.hadoop.hive.ql.exec.UDFArgumentException.<init>(UDFArgumentException.java:42)
 	at ai.h2o.hive.udf.ScoreDataUDFGBMAVGM17.evaluate(ScoreDataUDFGBMAVGM17.java:103)
-	at ai.h2o.hive.udf.UDFExampleTest.testUDFReturnsCorrectValues(UDFExampleTest.java:34)
+	at ai.h2o.hive.udf.UDFM2Test.testUDFReturnsCorrectValues(UDFM2Test.java:34)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -167,7 +166,7 @@ java.lang.NoClassDefFoundError: Could not initialize class org.apache.hadoop.hiv
 Results :
 
 Tests in error:
-  testUDFReturnsCorrectValues(ai.h2o.hive.udf.UDFExampleTest): Could not initialize class org.apache.hadoop.hive.ql.ErrorMsg
+  testUDFReturnsCorrectValues(ai.h2o.hive.udf.UDFM2Test): Could not initialize class org.apache.hadoop.hive.ql.ErrorMsg
 
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
 
