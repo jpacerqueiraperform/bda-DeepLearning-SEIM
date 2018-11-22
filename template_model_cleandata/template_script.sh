@@ -21,7 +21,7 @@ list_bad_words_domain="27media.urlvalidation.amatorskihokej.gilbertargentina.arc
 #########################################################################################################################################################
 
 
-template template-version3-phishingURL-Clean-AUTOML-V3-BestModel-Discovery.txt > pyspark_execute/version3-phishingURL-Clean-AUTOML-V3-BestModel-Discovery.py
-template template-cleandata-v3f15.txt > pyspark_execute/cleandata-v3f15.py
+template template-version3-phishingURL-Clean-AUTOML-V3-BestModel-Discovery.txt > pyspark_execute/TEMP-version3-phishingURL-Clean-AUTOML-V3-BestModel-Discovery.py
+template template-cleandata-v3f15.txt > pyspark_execute/TEMP-cleandata-v3f15.py
 
 
