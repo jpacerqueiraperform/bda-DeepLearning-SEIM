@@ -234,9 +234,9 @@ model_ids = list(aml.leaderboard['model_id'].as_data_frame().iloc[:,0])
 print(model_ids)
 #
 # Extract MODEL
-aml.leader.download_mojo(path = "./product_model_bin/m40/v3/mojo", get_genmodel_jar = True)
+aml.leader.download_mojo(path = "/home/siemanalyst/notebooks/siem/product_model_bin/m40/v4/mojo", get_genmodel_jar = True)
 #
-print("Model in folder ./product_model_bin/m40/v3/mojo")
+print("Model in folder /home/siemanalyst/notebooks/siem/product_model_bin/m40/v4/mojo")
 #
 sc.stop()
 #
