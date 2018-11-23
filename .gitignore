@@ -1,5 +1,3 @@
-# ignore all logs
-*.log
 # Ignore Mac files
 *.DS_Store
 # ignore all target jars
