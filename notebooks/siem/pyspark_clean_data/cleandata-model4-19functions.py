@@ -1,34 +1,43 @@
+# /usr/env/spark2-submit
+import sys
+from random import random
+from operator import add
 #
-import findspark
-findspark.init()
-#
-import pyspark
-from pyspark.sql import functions as pfunc
-from pyspark.sql import SQLContext
-from pyspark.sql import Window, types
 import re
 import pandas as pd
 import numpy as np
 from pandas import DataFrame
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import FloatType
+from pyspark.sql.types import StringType
 from pyspark.sql.functions import udf
 from pyspark.sql.functions import *
 from scipy.stats import kstest
 from scipy import stats
 #
-sc = pyspark.SparkContext(appName="phishingURL-Clean-AUTOML-V3-BestModel-Discovery")
-sqlContext = SQLContext(sc)
-#
-import h2o
-from h2o.automl import H2OAutoML
-#
-import subprocess
-subprocess.run('unset http_proxy', shell=True)
-#
-h2o.init(ip="localhost",port=54321)
+import pyspark
+from pyspark.sql import functions as pfunc
+from pyspark.sql import SQLContext
+from pyspark.sql import Window, types
 #
 # -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Execute SparkSession cleandata.py
+#
+# 
+sc = pyspark.SparkContext(appName="Daily-CleanData-Model4-SIEM")
+sqlContext = SQLContext(sc)
+#
+# -----------------------------------------------------------------------------
+#
+# GENERAL PREPARATION SCRIPT
+#
+#  Date in format YYYYMMDD
+#  CSV URL Variable ame 
+process_date = "20181116"
+url_var = 'domain'
+# 
+#
 # -----------------------------------------------------------------------------
 ## URL size function1.
 def func_url_lengh(var1):
@@ -60,7 +69,8 @@ def func_url_is_ip(var1):
     cleanvar=var1.strip('http://').strip('https://')
     m1 = re.search('(([2][5][0-5]\.)|([2][0-4][0-9]\.)|([0-1]?[0-9]?[0-9]\.)){3}(([2][5][0-5])|([2][0-4][0-9])|([0-1]?[0-9]?[0-9]))',cleanvar)
     m2 = re.search('(([2][5][0-5]\.)|([2][0-4][0-9]\.)|([0-1]?[0-9]?[0-9]\.)){3}(([2][5][0-5])|([2][0-4][0-9])|([0-1]?[0-9]?[0-9]))([/]+)',cleanvar)
-    m3 = re.search('(([2][5][0-5]\.)|([2][0-4][0-9]\.)|([0-1]?[0-9]?[0-9]\.)){3}(([2][5][0-5])|([2][0-4][0-9])|([0-1]?[0-9]?[0-9]))([/]+)([\S]+)',cleanvar)  
+    m3 = re.search('(([2][5][0-5]\.)|([2][0-4][0-9]\.)|([0-1]?[0-9]?[0-9]\.)){3}(([2][5][0-5])|([2][0-4][0-9])|([0-1]?[0-9]?[0-9]))([/]+)([\S]+)',cleanvar)
+   
     if (m1 or m2 or m3):
         return 1
     else:
@@ -71,6 +81,7 @@ def func_url_is_ip(var1):
 def func_count_dot_com(var1):
     return var1.count(".com") #overlapping
 # -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------    
 # -----------------------------------------------------------------------------
 # KL : Kullback-Leibler Divergence
 # KS : Kolmogorov-Smirnov ( Sample sizes can be different)
@@ -449,51 +460,6 @@ def func_bad_entropy_phish_url(var1):
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------    
 #
-# -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
-## Transformation DI ynverified=1/0 FROM yes/no
-def func_url_verified(var1):
-    if var1==None:
-        return 1
-    if ( var1.lower()=='yes'):
-        return 1
-    elif (var1.lower()=='no'):
-        return 0
-    else :
-        return 1
-# -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
-## Languages eng ynverified=0 else =1
-def func_url_lang_en_ynverified(var1):
-    # https://commoncrawl.github.io/cc-crawl-statistics/plots/languages
-    catalogue_valid_langs = ("eng","rus","jpn","deu","fra","zho","spa","por","ita","pol","nld","ces","tur","vie","ind","swe",\
-                       "ara","fas","kor","ron","hun","ell","dan","ukr","fin","tha","nor","bul","slk","cat","heb","srp",\
-                       "hrv","lit","msa","est","slv","lav","hin","ben","aze","lat","isl","tam","sqi","bos","kat","hye",\
-                       "glg","urd","eus","mkd","kaz","mal","nno","mon","bel","nep","uzb","tel","mya","tgl","afr","mar",\
-                       "swa","cym","kan","sin","guj","khm","tat","som","epo","kur","gle","kir","pan","fao","oci","tgk",\
-                       "pus","amh","fry","ltz","mlg","war","lao","mlt","kin","ori","san","hau","gla","bre","cos","roh",\
-                       "bak","hat","jav","yid","bod","ceb","grn","uig","sco","tuk","blu","div","ina","kal","tir","bih",\
-                       "mri","nya","snd","sun","vol","asm","zul","glv","ile","orm","que","smo","sna","syr","xho","yor",\
-                       "aar","abk","haw","ibo","kha","lin","sot","iku","lug","nso","run","tsn")
-    catalogue_invalid_langs = ("<unknown>","unknown","<other>","other","")
-    if var1==None:
-        return 1
-    elif (var1[:3].lower().startswith(catalogue_valid_langs)):
-        return 0
-    elif (var1[:3].lower().startswith(catalogue_invalid_langs)):
-        return 1
-    else:
-        return 0
-#
-# -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
-#
-# UDF Functional DI Converstions 
-func_url_verified_udf = udf(func_url_verified, IntegerType())
-#
-## NOT REQUIRED CONFUSES MODEL !!
-### func_url_lang_en_ynverified_udf = udf(func_url_lang_en_ynverified, IntegerType())
-#
 # UDF COEFICIENT FUNCTIONS : [1-11] 
 func_url_lengh_udf = udf(func_url_lengh, IntegerType())
 func_url_big_udf = udf(func_url_big, IntegerType())
@@ -510,101 +476,87 @@ func_ks_phish_url_udf = udf(func_ks_phish_url, FloatType())
 func_bad_kl_phish_url_udf = udf(func_bad_kl_phish_url, IntegerType())
 func_bad_ks_phish_url_udf = udf(func_bad_ks_phish_url, IntegerType())
 func_bad_words_domain_udf = udf(func_bad_words_domain, IntegerType())
+func_entropy_en_url_udf = udf(func_entropy_en_url, FloatType())
+func_entropy_phish_url_udf = udf(func_entropy_phish_url,FloatType())
+func_bad_entropy_en_url_udf = udf(func_bad_entropy_en_url,IntegerType())
+func_bad_entropy_phish_url_udf = udf(func_bad_entropy_phish_url,IntegerType())
 #
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------    
 #
-# Arguments
+# UDF Functional DI Converstions 
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+## Transformation DI ynverified=1/0 FROM known
+def func_url_verified_known(var1):
+    if ( var1.lower()=='known'):
+        return 1
+    elif (var1.lower()=='unknown'):
+        return 0
+    else :
+        return 0
+func_url_verified_known_udf = udf(func_url_verified_known, IntegerType())
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+## concat domain -'.' with uri
+def func_clean_url_append_uri(var1,var2):
+    start=var1[:-1]
+    rst=start+"/"+str(var2).strip('/None')
+    if rst[-1] == '/':rst = rst[:-1]
+    return rst
+func_clean_url_append_uri_udf = udf (func_clean_url_append_uri, StringType())    
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------    
 #
-process_date="20181112"
-ccrwal_raw_file="hdfs:///user/siemanalyst/data/raw/commoncrawl/dt="+process_date+"/clean-CC-MAIN-2018-43-index-.*.json"
-phishtank_raw_file="hdfs:///user/siemanalyst/data/raw/phishtank/dt="+process_date+"/*.json"
-#
-ccrawl_staged_file="hdfs:///user/siemanalyst/data/staged/commoncrawl/dt="+process_date+"/"
-phishtank_staged_file="hdfs:///user/siemanalyst/data/staged/phishtank/dt="+process_date+"/"
-#
-internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=20181116/*.json"
 #
 #
-## Get all URL Commom Crawl from
-## List of Top Level Domains : *.com *.org *.co.uk *.ru *.net *.cn *.cz *.kp *.us "
-# 
-ccrawl_traindf = sqlContext.read.json(ccrwal_raw_file)
-ccrawl_traindf.printSchema()
+process_date = "20181116"
+url_var = 'url' # join of 'domain'+'uri'
+verified_di = 'confidence_id'
+list_to_drop=['domain','trigger','category_name','confidence_id','uri']
 #
-#### MODEL1 MODEL3 CCRAWL HAS NOT PHISHING URL
-#.withColumn('ynverified',lit(0).cast('int'))\
+#
+input_file="hdfs:///user/siemanalyst/data/raw/dailyurlingest/dt="+process_date+"/*.csv"
+output_file="hdfs:///user/siemanalyst/data/staged/urltopredict/dt="+process_date
+#
+#
+url_df_df= sqlContext.read.csv(input_file, header=True)
+url_df_df.printSchema()
 
-## NOT REQUIRED CONFUSES MODEL !!
-### 
-#### MODEL 2
-#.withColumn('ynverified',func_url_lang_en_ynverified_udf(ccrawl_traindf['languages']).cast('int') )\
-
-drop_ccrawl_cols=['charset','digest','filename','verification_time','length','mime','mime-detected','offset','status']
-## Assume URLS as not phishing ynverified=0 if EN as phishing ynverified=1
-ccrawl_trainds = ccrawl_traindf\
-.filter("url is not NULL")\
-.drop(*drop_ccrawl_cols)\
-.withColumn('ynverified',lit(0).cast('int'))\
-.drop('languages')\
-.withColumn('url_length',func_url_lengh_udf(col('url')).cast('int'))\
-.withColumn('massiveurl',func_url_big_udf(col('url')).cast('int'))\
-.withColumn('count_at',func_url_count_at_udf(col('url')).cast('int'))\
-.withColumn('count_dot',func_url_count_dot_udf(col('url')).cast('int'))\
-.withColumn('url_is_ip',func_url_is_ip_udf(col('url')).cast('int'))\
-.withColumn('count_dot_com',func_count_dot_com_udf(col('url')).cast('int'))\
-.withColumn('url_kl_en',func_kl_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_en',func_bad_kl_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_en',func_ks_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_en',func_bad_ks_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_kl_phish',func_kl_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_phish',func_bad_kl_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_phish',func_ks_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_phish',func_bad_ks_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_bad_words_domain',func_bad_words_domain_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_phish',func_entropy_phish_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(col('url')).cast('int'))
+url_df_validdf=url_df_df\
+.withColumn(url_var, func_clean_url_append_uri_udf(url_df_df['domain'],url_df_df['uri']))\
+.persist(pyspark.StorageLevel.MEMORY_AND_DISK_2)
+url_df_validdf.printSchema()
 #
-ccrawl_trainds.printSchema()
-ccrawl_persist=ccrawl_trainds.coalesce(1).write.json(ccrawl_staged_file , mode="overwrite")
+url_df_validds=url_df_validdf\
+.withColumn('ynverified',func_url_verified_known_udf(url_df_validdf[verified_di]).cast('int'))\
+.withColumn('url_length',func_url_lengh_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('massiveurl',func_url_big_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('count_at',func_url_count_at_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('count_dot',func_url_count_dot_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_is_ip',func_url_is_ip_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('count_dot_com',func_count_dot_com_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_kl_en',func_kl_en_url_udf(url_df_validdf['url']).cast('double'))\
+.withColumn('url_bad_kl_en',func_bad_kl_en_url_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_ks_en',func_ks_en_url_udf(url_df_validdf['url']).cast('double'))\
+.withColumn('url_bad_ks_en',func_bad_ks_en_url_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_kl_phish',func_kl_phish_url_udf(url_df_validdf['url']).cast('double'))\
+.withColumn('url_bad_kl_phish',func_bad_kl_phish_url_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_ks_phish',func_ks_phish_url_udf(url_df_validdf['url']).cast('double'))\
+.withColumn('url_bad_ks_phish',func_bad_ks_phish_url_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_bad_words_domain',func_bad_words_domain_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_entropy_en',func_entropy_en_url_udf(url_df_validdf['url']).cast('float'))\
+.withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(url_df_validdf['url']).cast('int'))\
+.withColumn('url_entropy_phish',func_entropy_phish_url_udf(url_df_validdf['url']).cast('float'))\
+.withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(url_df_validdf['url']).cast('int'))\
+.drop(*list_to_drop)
 #
-phishtank_traindf= sqlContext.read.json(phishtank_raw_file)
-phishtank_traindf.printSchema()
 #
-drop_phish_cols=['details','online','phish_detail_url','phish_id','submission_time','target','verification_time']
+url_df_validds.printSchema()
+url_df_persist=url_df_validds.persist(pyspark.StorageLevel.MEMORY_AND_DISK_2)
 #
-phishtank_trainds=phishtank_traindf\
-.filter("url is not NULL")\
-.drop(*drop_phish_cols)\
-.withColumn('ynverified',func_url_verified_udf(col('verified')).cast('int'))\
-.drop('verified')\
-.withColumn('url_length',func_url_lengh_udf(col('url')).cast('int'))\
-.withColumn('massiveurl',func_url_big_udf(col('url')).cast('int'))\
-.withColumn('count_at',func_url_count_at_udf(col('url')).cast('int'))\
-.withColumn('count_dot',func_url_count_dot_udf(col('url')).cast('int'))\
-.withColumn('url_is_ip',func_url_is_ip_udf(col('url')).cast('int'))\
-.withColumn('count_dot_com',func_count_dot_com_udf(col('url')).cast('int'))\
-.withColumn('url_kl_en',func_kl_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_en',func_bad_kl_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_en',func_ks_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_en',func_bad_ks_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_kl_phish',func_kl_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_phish',func_bad_kl_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_phish',func_ks_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_phish',func_bad_ks_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_bad_words_domain',func_bad_words_domain_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_phish',func_entropy_phish_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(col('url')).cast('int'))
-phishtank_trainds.printSchema()
-#
-phishtank_persist=phishtank_trainds.coalesce(1).write.json(phishtank_staged_file , mode="overwrite")
-#
+# Store Data as JSON
+url_df_persist.coalesce(1).write.json(output_file , mode="overwrite")
 #
 sc.stop()
-#
-print("Factor Calculation Done!")
 #
