@@ -7,8 +7,10 @@ FROM siem.url_model3_score_predict where url is not null limit 10 ;
 SELECT COUNT(DISTINCT url)  from siem.url_model3_score_predict  where url is not null group by url ;
 
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
+ url_kl_phish, url_bad_kl_phish,url_ks_phish,url_bad_ks_phish,url_bad_words_domain,url_entropy_en,url_bad_entropy_en,url_entropy_phish,url_bad_entropy_phish,
  ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag
-FROM siem.url_model3_score_predict where url is not null  limit 80000 ;
+FROM siem.url_phishing_model4_prediction where url is not null  limit 80000 ;
+
 
 DELETE JAR h2o-genmodel.jar;
 DELETE JAR ScoreDataUDFAUTOML-3.0-SNAPSHOT.jar;
