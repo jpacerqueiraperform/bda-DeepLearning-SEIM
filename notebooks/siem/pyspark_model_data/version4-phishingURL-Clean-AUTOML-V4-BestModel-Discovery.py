@@ -17,7 +17,7 @@ from pyspark.sql.functions import *
 from scipy.stats import kstest
 from scipy import stats
 #
-sc = pyspark.SparkContext(appName="phishingURL-Clean-AUTOML-V3-BestModel-Discovery")
+sc = pyspark.SparkContext(appName="phishingURL-Clean-AUTOML-V4-BestModel-Discovery")
 sqlContext = SQLContext(sc)
 #
 import h2o
@@ -522,8 +522,6 @@ phishtank_raw_file="hdfs:///user/siemanalyst/data/raw/phishtank/dt="+process_dat
 #
 ccrawl_staged_file="hdfs:///user/siemanalyst/data/staged/commoncrawl/dt="+process_date+"/"
 phishtank_staged_file="hdfs:///user/siemanalyst/data/staged/phishtank/dt="+process_date+"/"
-#
-internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=20181116/*.json"
 #
 #
 ## Get all URL Commom Crawl from

@@ -36,8 +36,12 @@ h2o.init(ip="localhost",port=54321)
 process_date="20181112"
 #
 ccrawl_staged_file="hdfs:///user/siemanalyst/data/staged/commoncrawl/dt="+process_date+"/*.json"
+#
 phishtank_staged_file="hdfs:///user/siemanalyst/data/staged/phishtank/dt="+process_date+"/*.json"
+#
 internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=20181116/*.json"
+#
+#internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=*/*.json"
 #
 #
 # Join with Internal Curation Data in urltopredict staged folder
