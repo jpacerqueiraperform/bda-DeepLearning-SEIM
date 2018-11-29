@@ -1,300 +1,82 @@
+/opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/connection.py:312: UserWarning: Proxy is defined in the environment: http_proxy. This may interfere with your H2O Connection.
+  "This may interfere with your H2O Connection." % name)
 Checking whether there is an H2O instance running at http://localhost:54321..... not found.
 Attempting to start a local H2O server...
   Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
   Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /tmp/tmpir0nl6yp
-  JVM stdout: /tmp/tmpir0nl6yp/h2o_siemanalyst_started_from_python.out
-  JVM stderr: /tmp/tmpir0nl6yp/h2o_siemanalyst_started_from_python.err
+  Ice root: /tmp/tmp5jj75vw6
+  JVM stdout: /tmp/tmp5jj75vw6/h2o_siemanalyst_started_from_python.out
+  JVM stderr: /tmp/tmp5jj75vw6/h2o_siemanalyst_started_from_python.err
   Server is running at http://127.0.0.1:54321
-Connecting to H2O server at http://127.0.0.1:54321... successful.
---------------------------  ----------------------------------------
-H2O cluster uptime:         01 secs
-H2O cluster timezone:       UTC
-H2O data parsing timezone:  UTC
-H2O cluster version:        3.22.0.1
-H2O cluster version age:    29 days
-H2O cluster name:           H2O_from_python_siemanalyst_2dwz3b
-H2O cluster total nodes:    1
-H2O cluster free memory:    5.176 Gb
-H2O cluster total cores:    12
-H2O cluster allowed cores:  12
-H2O cluster status:         accepting new members, healthy
-H2O connection url:         http://127.0.0.1:54321
-H2O connection proxy:
-H2O internal security:      False
-H2O API Extensions:         XGBoost, Algos, AutoML, Core V3, Core V4
-Python version:             3.6.4 final
---------------------------  ----------------------------------------
-root
- |-- charset: string (nullable = true)
- |-- digest: string (nullable = true)
- |-- filename: string (nullable = true)
- |-- languages: string (nullable = true)
- |-- length: string (nullable = true)
- |-- mime: string (nullable = true)
- |-- mime-detected: string (nullable = true)
- |-- offset: string (nullable = true)
- |-- status: string (nullable = true)
- |-- url: string (nullable = true)
+Connecting to H2O server at http://127.0.0.1:54321...................... failed.
+H2OConnectionError: Could not establish link to the H2O cloud http://127.0.0.1:54321 after 20 retries
+[01:53.61] H2OServerError: HTTP 503 Service Unavailable:
+[01:53.81] H2OServerError: HTTP 503 Service Unavailable:
+[01:54.02] H2OServerError: HTTP 503 Service Unavailable:
+[01:54.23] H2OServerError: HTTP 503 Service Unavailable:
+[01:54.44] H2OServerError: HTTP 503 Service Unavailable:
+[01:54.65] H2OServerError: HTTP 503 Service Unavailable:
+[01:54.85] H2OServerError: HTTP 503 Service Unavailable:
+[01:55.06] H2OServerError: HTTP 503 Service Unavailable:
+[01:55.27] H2OServerError: HTTP 503 Service Unavailable:
+[01:55.47] H2OServerError: HTTP 503 Service Unavailable:
+[01:55.68] H2OServerError: HTTP 503 Service Unavailable:
+[01:55.89] H2OServerError: HTTP 503 Service Unavailable:
+[01:56.10] H2OServerError: HTTP 503 Service Unavailable:
+[01:56.30] H2OServerError: HTTP 503 Service Unavailable:
+[01:56.51] H2OServerError: HTTP 503 Service Unavailable:
+[01:56.72] H2OServerError: HTTP 503 Service Unavailable:
+[01:56.93] H2OServerError: HTTP 503 Service Unavailable:
+[01:57.14] H2OServerError: HTTP 503 Service Unavailable:
+[01:57.34] H2OServerError: HTTP 503 Service Unavailable:
+[01:57.55] H2OServerError: HTTP 503 Service Unavailable:
+                    in H2OConnection._test_connection(self, max_retries=5, messages=None) line 588
+                       H2OConnection.open(server=None, url=None, ip=None, port=None, https=None, auth=None,
+                                          verify_ssl_certificates=True, proxy=None, cookies=None, verbose=True,
+                                          _msgs=None) line 329
+                       init(url=None, ip=None, port=None, https=None, insecure=None, username=None, password=None,
+                            cookies=None, proxy=None, start_h2o=True, nthreads=-1, ice_root=None, enable_assertions=True,
+                            max_mem_size=None, min_mem_size=None, strict_version_check=None, ignore_config=False,
+                            extra_classpath=None, jvm_custom_args=None, bind_to_localhost=True, **kwargs) line 267
 
-Traceback (most recent call last):
-  File "/home/siemanalyst/notebooks/siem/pyspark_model_data/version4-phishingURL-Clean-AUTOML-V4-BestModel-Discovery.py", line 565, in <module>
-    .withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float'))\
-NameError: name 'func_entropy_en_url_udf' is not defined
-H2O session _sid_a59c closed.
+/opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/connection.py:312: UserWarning: Proxy is defined in the environment: http_proxy. This may interfere with your H2O Connection.
+  "This may interfere with your H2O Connection." % name)
 Checking whether there is an H2O instance running at http://localhost:54321..... not found.
 Attempting to start a local H2O server...
   Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
   Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /tmp/tmpy6h4xce7
-  JVM stdout: /tmp/tmpy6h4xce7/h2o_siemanalyst_started_from_python.out
-  JVM stderr: /tmp/tmpy6h4xce7/h2o_siemanalyst_started_from_python.err
+  Ice root: /tmp/tmp2jxy9sdr
+  JVM stdout: /tmp/tmp2jxy9sdr/h2o_siemanalyst_started_from_python.out
+  JVM stderr: /tmp/tmp2jxy9sdr/h2o_siemanalyst_started_from_python.err
   Server is running at http://127.0.0.1:54321
-Connecting to H2O server at http://127.0.0.1:54321... successful.
---------------------------  ----------------------------------------
-H2O cluster uptime:         01 secs
-H2O cluster timezone:       UTC
-H2O data parsing timezone:  UTC
-H2O cluster version:        3.22.0.1
-H2O cluster version age:    29 days
-H2O cluster name:           H2O_from_python_siemanalyst_wwdr6s
-H2O cluster total nodes:    1
-H2O cluster free memory:    5.176 Gb
-H2O cluster total cores:    12
-H2O cluster allowed cores:  12
-H2O cluster status:         accepting new members, healthy
-H2O connection url:         http://127.0.0.1:54321
-H2O connection proxy:
-H2O internal security:      False
-H2O API Extensions:         XGBoost, Algos, AutoML, Core V3, Core V4
-Python version:             3.6.4 final
---------------------------  ----------------------------------------
-root
- |-- url: string (nullable = true)
- |-- ynverified: long (nullable = true)
- |-- url_length: long (nullable = true)
- |-- massiveurl: long (nullable = true)
- |-- count_at: long (nullable = true)
- |-- count_dot: long (nullable = true)
- |-- url_is_ip: long (nullable = true)
- |-- count_dot_com: long (nullable = true)
- |-- url_kl_en: double (nullable = true)
- |-- url_bad_kl_en: long (nullable = true)
- |-- url_ks_en: double (nullable = true)
- |-- url_bad_ks_en: long (nullable = true)
- |-- url_kl_phish: double (nullable = true)
- |-- url_bad_kl_phish: long (nullable = true)
- |-- url_ks_phish: double (nullable = true)
- |-- url_bad_ks_phish: long (nullable = true)
- |-- url_bad_words_domain: long (nullable = true)
- |-- url_entropy_en: double (nullable = true)
- |-- url_bad_entropy_en: long (nullable = true)
- |-- url_entropy_phish: double (nullable = true)
- |-- url_bad_entropy_phish: long (nullable = true)
+Connecting to H2O server at http://127.0.0.1:54321...................... failed.
+H2OConnectionError: Could not establish link to the H2O cloud http://127.0.0.1:54321 after 20 retries
+[02:17.07] H2OServerError: HTTP 503 Service Unavailable:
+[02:17.28] H2OServerError: HTTP 503 Service Unavailable:
+[02:17.50] H2OServerError: HTTP 503 Service Unavailable:
+[02:17.71] H2OServerError: HTTP 503 Service Unavailable:
+[02:17.92] H2OServerError: HTTP 503 Service Unavailable:
+[02:18.12] H2OServerError: HTTP 503 Service Unavailable:
+[02:18.34] H2OServerError: HTTP 503 Service Unavailable:
+[02:18.54] H2OServerError: HTTP 503 Service Unavailable:
+[02:18.75] H2OServerError: HTTP 503 Service Unavailable:
+[02:18.96] H2OServerError: HTTP 503 Service Unavailable:
+[02:19.17] H2OServerError: HTTP 503 Service Unavailable:
+[02:19.37] H2OServerError: HTTP 503 Service Unavailable:
+[02:19.58] H2OServerError: HTTP 503 Service Unavailable:
+[02:19.79] H2OServerError: HTTP 503 Service Unavailable:
+[02:19.00] H2OServerError: HTTP 503 Service Unavailable:
+[02:20.20] H2OServerError: HTTP 503 Service Unavailable:
+[02:20.41] H2OServerError: HTTP 503 Service Unavailable:
+[02:20.62] H2OServerError: HTTP 503 Service Unavailable:
+[02:20.83] H2OServerError: HTTP 503 Service Unavailable:
+[02:21.03] H2OServerError: HTTP 503 Service Unavailable:
+                    in H2OConnection._test_connection(self, max_retries=5, messages=None) line 588
+                       H2OConnection.open(server=None, url=None, ip=None, port=None, https=None, auth=None,
+                                          verify_ssl_certificates=True, proxy=None, cookies=None, verbose=True,
+                                          _msgs=None) line 329
+                       init(url=None, ip=None, port=None, https=None, insecure=None, username=None, password=None,
+                            cookies=None, proxy=None, start_h2o=True, nthreads=-1, ice_root=None, enable_assertions=True,
+                            max_mem_size=None, min_mem_size=None, strict_version_check=None, ignore_config=False,
+                            extra_classpath=None, jvm_custom_args=None, bind_to_localhost=True, **kwargs) line 267
 
-root
- |-- url: string (nullable = true)
- |-- ynverified: integer (nullable = true)
- |-- url_length: integer (nullable = true)
- |-- massiveurl: integer (nullable = true)
- |-- count_at: integer (nullable = true)
- |-- count_dot: integer (nullable = true)
- |-- url_is_ip: integer (nullable = true)
- |-- count_dot_com: integer (nullable = true)
- |-- url_kl_en: double (nullable = true)
- |-- url_bad_kl_en: integer (nullable = true)
- |-- url_ks_en: double (nullable = true)
- |-- url_bad_ks_en: integer (nullable = true)
- |-- url_kl_phish: double (nullable = true)
- |-- url_bad_kl_phish: integer (nullable = true)
- |-- url_ks_phish: double (nullable = true)
- |-- url_bad_ks_phish: integer (nullable = true)
- |-- url_bad_words_domain: integer (nullable = true)
- |-- url_entropy_en: double (nullable = true)
- |-- url_bad_entropy_en: integer (nullable = true)
- |-- url_entropy_phish: double (nullable = true)
- |-- url_bad_entropy_phish: integer (nullable = true)
-
-root
- |-- url: string (nullable = true)
- |-- ynverified: integer (nullable = true)
- |-- url_length: integer (nullable = true)
- |-- massiveurl: integer (nullable = true)
- |-- count_at: integer (nullable = true)
- |-- count_dot: integer (nullable = true)
- |-- url_is_ip: integer (nullable = true)
- |-- count_dot_com: integer (nullable = true)
- |-- url_kl_en: double (nullable = true)
- |-- url_bad_kl_en: integer (nullable = true)
- |-- url_ks_en: double (nullable = true)
- |-- url_bad_ks_en: integer (nullable = true)
- |-- url_kl_phish: double (nullable = true)
- |-- url_bad_kl_phish: integer (nullable = true)
- |-- url_ks_phish: double (nullable = true)
- |-- url_bad_ks_phish: integer (nullable = true)
- |-- url_bad_words_domain: integer (nullable = true)
- |-- url_entropy_en: double (nullable = true)
- |-- url_bad_entropy_en: integer (nullable = true)
- |-- url_entropy_phish: double (nullable = true)
- |-- url_bad_entropy_phish: integer (nullable = true)
-
-root
- |-- url: string (nullable = true)
- |-- ynverified: integer (nullable = true)
- |-- url_length: integer (nullable = true)
- |-- massiveurl: integer (nullable = true)
- |-- count_at: integer (nullable = true)
- |-- count_dot: integer (nullable = true)
- |-- url_is_ip: integer (nullable = true)
- |-- count_dot_com: integer (nullable = true)
- |-- url_kl_en: double (nullable = true)
- |-- url_bad_kl_en: integer (nullable = true)
- |-- url_ks_en: double (nullable = true)
- |-- url_bad_ks_en: integer (nullable = true)
- |-- url_kl_phish: double (nullable = true)
- |-- url_bad_kl_phish: integer (nullable = true)
- |-- url_ks_phish: double (nullable = true)
- |-- url_bad_ks_phish: integer (nullable = true)
- |-- url_bad_words_domain: integer (nullable = true)
- |-- url_entropy_en: double (nullable = true)
- |-- url_bad_entropy_en: integer (nullable = true)
- |-- url_entropy_phish: double (nullable = true)
- |-- url_bad_entropy_phish: integer (nullable = true)
-
-root
- |-- url: string (nullable = true)
- |-- ynverified: integer (nullable = true)
- |-- url_length: integer (nullable = true)
- |-- massiveurl: integer (nullable = true)
- |-- count_at: integer (nullable = true)
- |-- count_dot: integer (nullable = true)
- |-- url_is_ip: integer (nullable = true)
- |-- count_dot_com: integer (nullable = true)
- |-- url_kl_en: double (nullable = true)
- |-- url_bad_kl_en: integer (nullable = true)
- |-- url_ks_en: double (nullable = true)
- |-- url_bad_ks_en: integer (nullable = true)
- |-- url_kl_phish: double (nullable = true)
- |-- url_bad_kl_phish: integer (nullable = true)
- |-- url_ks_phish: double (nullable = true)
- |-- url_bad_ks_phish: integer (nullable = true)
- |-- url_bad_words_domain: integer (nullable = true)
- |-- url_entropy_en: double (nullable = true)
- |-- url_bad_entropy_en: integer (nullable = true)
- |-- url_entropy_phish: double (nullable = true)
- |-- url_bad_entropy_phish: integer (nullable = true)
-
-Parse progress: |█████████████████████████████████████████████████████████| 100%
-Parse progress: |█████████████████████████████████████████████████████████| 100%
-Parse progress: |█████████████████████████████████████████████████████████| 100%
-Parse progress: |█████████████████████████████████████████████████████████| 100%
-train
-url                                        ynverified    url_length    massiveurl    count_at    count_dot    url_is_ip    count_dot_com    url_kl_en    url_bad_kl_en    url_ks_en    url_bad_ks_en    url_kl_phish    url_bad_kl_phish    url_ks_phish    url_bad_ks_phish    url_bad_words_domain    url_entropy_en    url_bad_entropy_en    url_entropy_phish    url_bad_entropy_phish
----------------------------------------  ------------  ------------  ------------  ----------  -----------  -----------  ---------------  -----------  ---------------  -----------  ---------------  --------------  ------------------  --------------  ------------------  ----------------------  ----------------  --------------------  -------------------  -----------------------
-http://0.cn/                                        0            12             0           0            1            0                0     -81.2642                1    0.10749                  1        -10.3163                   0       0.534416                    0                       1         0.0771917                     0           0.00479274                        0
-http://0.cn/robots.txt                              0            22             0           0            2            0                0      85.8588                0    0.54074                  0        131.9                      1       0.54074                     0                       1         0.118763                      0           0.0830187                         0
-http://glortzrediffmail.0.cn/                       0            29             0           0            2            0                0     254.789                 1    0.972789                 0        212.462                    1       0.972789                    0                       0         0.0888557                     0           0.0773457                         0
-http://glortzrediffmail.0.cn/robots.txt             0            39             0           0            3            0                0     303.281                 1    0.943936                 0        305.849                    1       0.943936                    0                       0         0.0895893                     0           0.066725                          0
-http://0-0-0.cn/                                    0            16             0           0            1            0                0    -142.413                 1    0.0496544                1        -62.0097                   0       0.0496544                   1                       0         0.178259                      0           0.177603                          0
-http://0-0-0.cn/robots.txt                          0            26             0           0            2            0                0     -39.9272                1    0.425472                 1        -27.8402                   0       0.218166                    1                       0         0.128864                      0           0.118376                          0
-http://0-0-0.cn/robots.txt                          0            26             0           0            2            0                0     -39.9272                1    0.425472                 1        -27.8402                   0       0.218166                    1                       0         0.128864                      0           0.118376                          0
-http://0-0-0.cn/view.asp?id=470                     0            31             0           0            2            0                0    -110.365                 1    0.0505876                1       -232.331                    0       0.0505876                   1                       0         0.175403                      0           0.117448                          0
-http://0-0-0.cn/view.asp?id=476                     0            31             0           0            2            0                0    -108.468                 1    0.0505876                1       -230.947                    0       0.0505876                   1                       0         0.173363                      0           0.115346                          0
-http://0-0-0.cn/view.asp?id=477                     0            31             0           0            2            0                0    -108.085                 1    0.0505876                1       -230.649                    0       0.0505876                   1                       0         0.17306                       0           0.115033                          0
-
-[10 rows x 21 columns]
-
-test
-url                                                                                ynverified    url_length    massiveurl    count_at    count_dot    url_is_ip    count_dot_com    url_kl_en    url_bad_kl_en    url_ks_en    url_bad_ks_en    url_kl_phish    url_bad_kl_phish    url_ks_phish    url_bad_ks_phish    url_bad_words_domain    url_entropy_en    url_bad_entropy_en    url_entropy_phish    url_bad_entropy_phish
--------------------------------------------------------------------------------  ------------  ------------  ------------  ----------  -----------  -----------  ---------------  -----------  ---------------  -----------  ---------------  --------------  ------------------  --------------  ------------------  ----------------------  ----------------  --------------------  -------------------  -----------------------
-http://velerszers.com/28359/9afa4c7d183ad3be1814ae5863a59499/                               1            61             0           0            1            0                1    -757.875                 1  7.84305e-06                1        -244.177                   0     0.00150733                    1                       0         0.0729392                     0            0.123284                         0
-http://velerszers.com/28359/9afa4c7d183ad3be1814ae5863a59499                                1            60             0           0            1            0                1    -757.875                 1  7.84305e-06                1        -244.177                   0     0.00150733                    1                       0         0.0729392                     0            0.123284                         0
-http://stsgroupbd.com/aug/ee/secure/cmd-login=d3993414284beca7c9d20faab65c690f/             1            79             0           0            1            0                1    -568.747                 1  0.000130907                1        -122.362                   0     0.000278609                   1                       0         0.0728177                     0            0.100008                         0
-http://stsgroupbd.com/aug/ee/secure/cmd-login=300308dff2f464ff22433eb64d8eb61f/             1            79             0           0            1            0                1    -579.733                 1  0.000130907                1        -227.502                   0     0.000278609                   1                       0         0.0792611                     0            0.0905584                        0
-http://www.miroslavopava.cz/media/system/js/validateotp.htm                                 1            59             0           0            3            0                0     408.304                 1  0.945549                   0         872.05                    1     0.652101                      0                       0         0.0654741                     0            0.097199                         0
-http://suelunn.com/aut.php?email=crl398@gmail.com                                           1            49             0           1            3            0                2      26.3968                0  0.738162                   0         323.174                   1     0.738162                      0                       0         0.0551491                     0            0.0643832                        0
-http://metaswitchweightloss.com/alibaba/alibaba/                                            1            48             0           0            1            0                1     366.07                  1  0.723665                   0         667.595                   1     0.361313                      1                       0         0.0663577                     0            0.0697863                        0
-http://odbiorcy.emoda.nnn.vc/login.php                                                      1            38             0           0            4            0                0     216.156                 1  0.999998                   0         293.179                   1     0.993644                      0                       0         0.0862164                     0            0.0917235                        0
-http://www.onefd.edu.dz.forexwinz.com/facebook/FR/login.php                                 1            59             0           0            6            0                1     291.321                 1  0.777684                   0         468.467                   1     0.777684                      0                       0         0.0890603                     0            0.0842165                        0
-http://tmsvent.ru/layouts/joomla/edit/js/1/                                                 1            43             0           0            1            0                0     166.841                 1  0.825316                   0         323.869                   1     0.621292                      0                       0         0.0661926                     0            0.0801017                        0
-
-[10 rows x 21 columns]
-
-AutoML progress: |████████████████████████████████████████████████████████| 100%
-Model Training Done!
-drf prediction progress: |████████████████████████████████████████████████| 100%
-test
-url                                                                                                                                                                                                                  ynverified    url_length    massiveurl    count_at    count_dot    url_is_ip    count_dot_com    url_kl_en    url_bad_kl_en    url_ks_en    url_bad_ks_en    url_kl_phish    url_bad_kl_phish    url_ks_phish    url_bad_ks_phish    url_bad_words_domain    url_entropy_en    url_bad_entropy_en    url_entropy_phish    url_bad_entropy_phish
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  ------------  ------------  ------------  ----------  -----------  -----------  ---------------  -----------  ---------------  -----------  ---------------  --------------  ------------------  --------------  ------------------  ----------------------  ----------------  --------------------  -------------------  -----------------------
-http://velerszers.com/28359/9afa4c7d183ad3be1814ae5863a59499/                                                                                                                                                                 1            61             0           0            1            0                1    -757.875                 1  7.84305e-06                1       -244.177                    0     0.00150733                    1                       0         0.0729392                     0            0.123284                         0
-http://velerszers.com/28359/9afa4c7d183ad3be1814ae5863a59499                                                                                                                                                                  1            60             0           0            1            0                1    -757.875                 1  7.84305e-06                1       -244.177                    0     0.00150733                    1                       0         0.0729392                     0            0.123284                         0
-http://stsgroupbd.com/aug/ee/secure/cmd-login=d3993414284beca7c9d20faab65c690f/                                                                                                                                               1            79             0           0            1            0                1    -568.747                 1  0.000130907                1       -122.362                    0     0.000278609                   1                       0         0.0728177                     0            0.100008                         0
-http://stsgroupbd.com/aug/ee/secure/cmd-login=300308dff2f464ff22433eb64d8eb61f/                                                                                                                                               1            79             0           0            1            0                1    -579.733                 1  0.000130907                1       -227.502                    0     0.000278609                   1                       0         0.0792611                     0            0.0905584                        0
-http://www.miroslavopava.cz/media/system/js/validateotp.htm                                                                                                                                                                   1            59             0           0            3            0                0     408.304                 1  0.945549                   0        872.05                     1     0.652101                      0                       0         0.0654741                     0            0.097199                         0
-http://suelunn.com/aut.php?email=crl398@gmail.com                                                                                                                                                                             1            49             0           1            3            0                2      26.3968                0  0.738162                   0        323.174                    1     0.738162                      0                       0         0.0551491                     0            0.0643832                        0
-http://metaswitchweightloss.com/alibaba/alibaba/                                                                                                                                                                              1            48             0           0            1            0                1     366.07                  1  0.723665                   0        667.595                    1     0.361313                      1                       0         0.0663577                     0            0.0697863                        0
-http://odbiorcy.emoda.nnn.vc/login.php                                                                                                                                                                                        1            38             0           0            4            0                0     216.156                 1  0.999998                   0        293.179                    1     0.993644                      0                       0         0.0862164                     0            0.0917235                        0
-http://www.onefd.edu.dz.forexwinz.com/facebook/FR/login.php                                                                                                                                                                   1            59             0           0            6            0                1     291.321                 1  0.777684                   0        468.467                    1     0.777684                      0                       0         0.0890603                     0            0.0842165                        0
-http://tmsvent.ru/layouts/joomla/edit/js/1/                                                                                                                                                                                   1            43             0           0            1            0                0     166.841                 1  0.825316                   0        323.869                    1     0.621292                      0                       0         0.0661926                     0            0.0801017                        0
-http://sbncglobal.net/                                                                                                                                                                                                        1            22             0           0            1            0                0     119.685                 1  0.991333                   0        257.232                    1     0.786417                      0                       0         0.0655687                     0            0.0929722                        0
-http://sbcglkobal.net/                                                                                                                                                                                                        1            22             0           0            1            0                0     117.1                   1  0.991333                   0        247.016                    1     0.786417                      0                       0         0.06617                       0            0.0874325                        0
-http://sbcglo9bal.net/                                                                                                                                                                                                        1            22             0           0            1            0                0      78.049                 0  0.786417                   0        210.371                    1     0.786417                      0                       0         0.0792131                     0            0.107414                         0
-http://sbxcglobal.net/                                                                                                                                                                                                        1            22             0           0            1            0                0     130.036                 1  0.991333                   0        274.604                    1     0.786417                      0                       0         0.0649868                     0            0.097282                         0
-http://auzonep.com.au/open-confirmonline/index.htm?&amp;COLLCC=667423427                                                                                                                                                      1            72             0           0            3            0                1    -305.932                 1  0.0320604                  1        209.907                    1     0.394822                      1                       0         0.0694352                     0            0.108078                         0
-https://qtrial2017q2az1.az1.qualtrics.com/jfe/form/SV_3aTvFyCcBV1Wv2Z                                                                                                                                                         1            69             0           0            3            0                1    -282.942                 1  0.00751487                 1        231.632                    1     0.16709                       1                       0         0.0606215                     0            0.0998014                        0
-http://profileget.esy.es/                                                                                                                                                                                                     1            25             0           0            2            0                0     124.204                 1  0.8899                     0        250.399                    1     0.588614                      0                       0         0.0738687                     0            0.0985164                        0
-http://radioanddigital.com/a/                                                                                                                                                                                                 1            29             0           0            1            0                1     147.007                 1  0.972789                   0        195.82                     1     0.972789                      0                       0         0.030999                      0            0.0634783                        0
-https://login.live.com/oauth20_authorize.srf?client_id=00000000441D858F&scope=wl.signin%20wl.basic%20wl.emails%20wl.contacts_emails&response_type=code&redirect_uri=http://owa-outlook-live.com/autentication.php             1           209             1           0            9            0                2     957.306                 1  0.160486                   1        818.685                    1     0.248273                      1                       0         0.0954558                     0            0.079588                         0
-http://israeladvocacycalendar.com/8-login-form                                                                                                                                                                                1            46             0           0            1            0                1     199.637                 1  0.883849                   0        587.962                    1     0.514193                      0                       0         0.0662274                     0            0.0757353                        0
-http://israeladvocacycalendar.com/8-login-form/                                                                                                                                                                               1            47             0           0            1            0                1     199.637                 1  0.883849                   0        587.962                    1     0.514193                      0                       0         0.0662274                     0            0.0757353                        0
-https://ariesgrupoconstructor.com/wp-content/wireless/                                                                                                                                                                        1            54             0           0            1            0                1     483.593                 1  0.579939                   0        734.815                    1     0.168733                      1                       0         0.0649371                     0            0.0594324                        0
-http://www.erinaubrykaplan.net/stream/attiinnddeexx%20(1).php                                                                                                                                                                 1            61             0           0            3            0                0     149.761                 1  0.992737                   0        535.013                    1     0.999947                      0                       0         0.0639169                     0            0.109419                         0
-http://erinaubrykaplan.net/stream/attiinnddeexx%20(1).php                                                                                                                                                                     1            57             0           0            2            0                0     149.761                 1  0.992737                   0        535.013                    1     0.999947                      0                       0         0.0639169                     0            0.109419                         0
-http://www.newhorizons-learning.com/control/index.php                                                                                                                                                                         1            53             0           0            3            0                1     360.896                 1  0.978138                   0        794.916                    1     0.1204                        1                       0         0.0682428                     0            0.0871449                        0
-http://jltl.org/secure/home/liamg1.php                                                                                                                                                                                        1            38             0           0            2            0                0     117.661                 1  0.993644                   0        239.94                     1     0.905248                      0                       0         0.0689263                     0            0.092427                         0
-http://89.161.207.107/mambots/wayn/file/index.php                                                                                                                                                                             1            49             0           0            4            1                0    -320.683                 1  0.0173264                  1         65.5876                   0     0.496647                      1                       0         0.110498                      0            0.144157                         0
-http://alaziziah.sa/images/portfolio/masonry/AABVL-8JwrwVwsSk2Qz2UHwLa/6tnpccs7ft6ckso/                                                                                                                                       1            87             1           0            1            0                0     -29.4113                1  0.027611                   1        660.153                    1     0.523203                      0                       0         0.0550233                     0            0.0957305                        0
-http://alaziziah.sa/images/portfolio/masonry/AABVL-8JwrwVwsSk2Qz2UHwLa/6tnpccs7ft6ckso                                                                                                                                        1            86             1           0            1            0                0     -29.4113                1  0.027611                   1        660.153                    1     0.523203                      0                       0         0.0550233                     0            0.0957305                        0
-http://enemach-railtransit.com/include/decode/s6ts6yhjd.html                                                                                                                                                                  1            60             0           0            2            0                1     184.904                 1  0.713612                   0        678.072                    1     0.713612                      0                       0         0.0554781                     0            0.0752042                        0
-
-[30 rows x 21 columns]
-
-prediction
-  predict          p0        p1
----------  ----------  --------
-        1  0.117506    0.882494
-        1  0.117506    0.882494
-        1  0.0301883   0.969812
-        1  0.0849671   0.915033
-        1  0.125274    0.874726
-        1  0.0645842   0.935416
-        1  0.00318776  0.996812
-        1  0.00116435  0.998836
-        1  0.010624    0.989376
-        1  0.341121    0.658879
-        1  0.00123988  0.99876
-        1  0.00123988  0.99876
-        1  0           1
-        1  0.00123988  0.99876
-        1  0.00396936  0.996031
-        1  0           1
-        1  0.0419447   0.958055
-        1  0.00215976  0.99784
-        1  0           1
-        1  0.0423394   0.957661
-        1  0.0579877   0.942012
-        1  0           1
-        1  0.336263    0.663737
-        1  0.236263    0.763737
-        1  0.00215589  0.997844
-        1  0.15179     0.84821
-        1  0.0653067   0.934693
-        1  0.0109314   0.989069
-        1  0.0109314   0.989069
-        1  0.452228    0.547772
-
-[30 rows x 3 columns]
-
-['DRF_1_AutoML_20181124_233356', 'GBM_5_AutoML_20181124_233356', 'GBM_4_AutoML_20181124_233356', 'GBM_grid_1_AutoML_20181124_233356_model_1', 'XRT_1_AutoML_20181124_233356', 'GBM_3_AutoML_20181124_233356', 'XGBoost_3_AutoML_20181124_233356', 'XGBoost_2_AutoML_20181124_233356', 'StackedEnsemble_BestOfFamily_AutoML_20181124_233356', 'StackedEnsemble_AllModels_AutoML_20181124_233356', 'GBM_2_AutoML_20181124_233356', 'GBM_1_AutoML_20181124_233356', 'XGBoost_1_AutoML_20181124_233356', 'XGBoost_grid_1_AutoML_20181124_233356_model_1', 'GBM_grid_1_AutoML_20181124_233356_model_2', 'XGBoost_grid_1_AutoML_20181124_233356_model_2', 'XGBoost_grid_1_AutoML_20181124_233356_model_4', 'XGBoost_grid_1_AutoML_20181124_233356_model_5', 'GLM_grid_1_AutoML_20181124_233356_model_1', 'XGBoost_grid_1_AutoML_20181124_233356_model_3', 'DeepLearning_grid_1_AutoML_20181124_233356_model_1', 'DeepLearning_grid_1_AutoML_20181124_233356_model_2', 'DeepLearning_1_AutoML_20181124_233356', 'DeepLearning_grid_1_AutoML_20181124_233356_model_3']
-Model in folder /home/siemanalyst/notebooks/siem/product_model_bin/m40/v4/mojo
-H2O session _sid_a62f closed.

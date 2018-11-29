@@ -500,8 +500,9 @@ func_url_verified_known_udf = udf(func_url_verified_known, IntegerType())
 # -----------------------------------------------------------------------------
 ## concat domain -'.' with uri
 def func_clean_url_append_uri(var1,var2):
-    start=var1[:-1]
-    rst=start+"/"+str(var2).strip('/None')
+    start=var1.strip('.')
+    rst=start+"/"+str(var2).strip('/')
+    print(rst)
     if rst[-1] == '/':rst = rst[:-1]
     return rst
 func_clean_url_append_uri_udf = udf (func_clean_url_append_uri, StringType())    
@@ -510,7 +511,7 @@ func_clean_url_append_uri_udf = udf (func_clean_url_append_uri, StringType())
 #
 #
 #
-process_date = "20181116"
+process_date = "20181129"
 url_var = 'url' # join of 'domain'+'uri'
 verified_di = 'confidence_id'
 list_to_drop=['domain','trigger','category_name','confidence_id','uri']

@@ -39,9 +39,9 @@ ccrawl_staged_file="hdfs:///user/siemanalyst/data/staged/commoncrawl/dt="+proces
 #
 phishtank_staged_file="hdfs:///user/siemanalyst/data/staged/phishtank/dt="+process_date+"/*.json"
 #
-internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=20181116/*.json"
+#internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=20181116/*.json"
 #
-#internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=*/*.json"
+internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=*/*.json"
 #
 #
 # Join with Internal Curation Data in urltopredict staged folder
@@ -234,7 +234,7 @@ test[y] = test[y].asfactor()
 # http://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html
 # Balance Classes to compensate unbalanced data
 # Run AutoML for 40 base models (limited to 1 hour max runtime by default)
-aml = H2OAutoML(max_models=40, seed=1999, balance_classes=True)
+aml = H2OAutoML(max_models=25, seed=1999, balance_classes=True)
 aml.train(x=x, y=y, training_frame=train)
 #
 #sc.stop()
@@ -262,9 +262,9 @@ model_ids = list(aml.leaderboard['model_id'].as_data_frame().iloc[:,0])
 print(model_ids)
 #
 # Extract MODEL
-aml.leader.download_mojo(path = "/home/siemanalyst/notebooks/siem/product_model_bin/m40/v4/mojo", get_genmodel_jar = True)
+aml.leader.download_mojo(path = "/home/siemanalyst/notebooks/siem/product_model_bin/m25/v4/mojo", get_genmodel_jar = True)
 #
-print("Model in folder /home/siemanalyst/notebooks/siem/product_model_bin/m40/v4/mojo")
+print("Model in folder /home/siemanalyst/notebooks/siem/product_model_bin/m25/v4/mojo")
 #
 sc.stop()
 #
