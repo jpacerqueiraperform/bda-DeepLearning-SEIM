@@ -28,15 +28,6 @@ from pyspark.sql import Window, types
 sc = pyspark.SparkContext(appName="Daily-CleanData-Model4-SIEM")
 sqlContext = SQLContext(sc)
 #
-# -----------------------------------------------------------------------------
-#
-# GENERAL PREPARATION SCRIPT
-#
-#  Date in format YYYYMMDD
-#  CSV URL Variable ame
-process_date = "20181116"
-url_var = 'domain'
-#
 #
 # -----------------------------------------------------------------------------
 ## URL size function1.
@@ -500,20 +491,33 @@ func_url_verified_known_udf = udf(func_url_verified_known, IntegerType())
 # -----------------------------------------------------------------------------
 ## concat domain -'.' with uri
 def func_clean_url_append_uri(var1,var2):
-start=var1[:-1]
-rst=start+"/"+str(var2).strip('/None')
-if rst[-1] == '/':rst = rst[:-1]
+start=var1.strip('.')
+rst=start+"/"+str(var2).strip('/')
+#    print(rst)
+if rst.endswith('/None'):
+return rst[:-5]
+elif rst.endswith('/'):
+return rst[:-1]
+else:
 return rst
 func_clean_url_append_uri_udf = udf (func_clean_url_append_uri, StringType())
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 #
 #
+# -----------------------------------------------------------------------------
 #
-process_date = "20181116"
+# GENERAL PREPARATION SCRIPT
+#
+#  Date in format YYYYMMDD
+process_date = "20181129"
+#  CSV URL Variable name
 url_var = 'url' # join of 'domain'+'uri'
+# Verification DataItem in Source File
 verified_di = 'confidence_id'
+#
 list_to_drop=['domain','trigger','category_name','confidence_id','uri']
+#
 #
 #
 input_file="hdfs:///user/siemanalyst/data/raw/dailyurlingest/dt="+process_date+"/*.csv"
@@ -522,11 +526,11 @@ output_file="hdfs:///user/siemanalyst/data/staged/urltopredict/dt="+process_date
 #
 url_df_df= sqlContext.read.csv(input_file, header=True)
 url_df_df.printSchema()
-
-.persist(pyspark.StorageLevel.MEMORY_AND_DISK_2)
+#
+url_df_validdf=url_df_df.withColumn(url_var, func_clean_url_append_uri_udf(url_df_df['domain'],url_df_df['uri'])).persist(pyspark.StorageLevel.MEMORY_AND_DISK_2)
 url_df_validdf.printSchema()
 #
-.drop(*list_to_drop)
+.withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(url_df_validdf['url']).cast('int')).withColumn('url_entropy_phish',func_entropy_phish_url_udf(url_df_validdf['url']).cast('float')).withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(url_df_validdf['url']).cast('int')).drop(*list_to_drop)
 #
 #
 url_df_validds.printSchema()

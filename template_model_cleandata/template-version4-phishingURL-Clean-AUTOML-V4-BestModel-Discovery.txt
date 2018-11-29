@@ -523,8 +523,6 @@ phishtank_raw_file="hdfs:///user/siemanalyst/data/raw/phishtank/dt="+process_dat
 ccrawl_staged_file="hdfs:///user/siemanalyst/data/staged/commoncrawl/dt="+process_date+"/"
 phishtank_staged_file="hdfs:///user/siemanalyst/data/staged/phishtank/dt="+process_date+"/"
 #
-internal_staged_urlpredict_files="hdfs:///user/siemanalyst/data/staged/urltopredict/dt=20181116/*.json"
-#
 #
 ## Get all URL Commom Crawl from
 ## List of Top Level Domains : *.com *.org *.co.uk *.ru *.net *.cn *.cz *.kp *.us "
@@ -542,30 +540,7 @@ ccrawl_traindf.printSchema()
 
 drop_ccrawl_cols=['charset','digest','filename','verification_time','length','mime','mime-detected','offset','status']
 ## Assume URLS as not phishing ynverified=0 if EN as phishing ynverified=1
-ccrawl_trainds = ccrawl_traindf\
-.filter("url is not NULL")\
-.drop(*drop_ccrawl_cols)\
-.withColumn('ynverified',lit(0).cast('int'))\
-.drop('languages')\
-.withColumn('url_length',func_url_lengh_udf(col('url')).cast('int'))\
-.withColumn('massiveurl',func_url_big_udf(col('url')).cast('int'))\
-.withColumn('count_at',func_url_count_at_udf(col('url')).cast('int'))\
-.withColumn('count_dot',func_url_count_dot_udf(col('url')).cast('int'))\
-.withColumn('url_is_ip',func_url_is_ip_udf(col('url')).cast('int'))\
-.withColumn('count_dot_com',func_count_dot_com_udf(col('url')).cast('int'))\
-.withColumn('url_kl_en',func_kl_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_en',func_bad_kl_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_en',func_ks_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_en',func_bad_ks_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_kl_phish',func_kl_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_phish',func_bad_kl_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_phish',func_ks_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_phish',func_bad_ks_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_bad_words_domain',func_bad_words_domain_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_phish',func_entropy_phish_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(col('url')).cast('int'))
+ccrawl_trainds = ccrawl_traindf.filter("url is not NULL").drop(*drop_ccrawl_cols).withColumn('ynverified',lit(0).cast('int')).drop('languages').withColumn('url_length',func_url_lengh_udf(col('url')).cast('int')).withColumn('massiveurl',func_url_big_udf(col('url')).cast('int')).withColumn('count_at',func_url_count_at_udf(col('url')).cast('int')).withColumn('count_dot',func_url_count_dot_udf(col('url')).cast('int')).withColumn('url_is_ip',func_url_is_ip_udf(col('url')).cast('int')).withColumn('count_dot_com',func_count_dot_com_udf(col('url')).cast('int')).withColumn('url_kl_en',func_kl_en_url_udf(col('url')).cast('double')).withColumn('url_bad_kl_en',func_bad_kl_en_url_udf(col('url')).cast('int')).withColumn('url_ks_en',func_ks_en_url_udf(col('url')).cast('double')).withColumn('url_bad_ks_en',func_bad_ks_en_url_udf(col('url')).cast('int')).withColumn('url_kl_phish',func_kl_phish_url_udf(col('url')).cast('double')).withColumn('url_bad_kl_phish',func_bad_kl_phish_url_udf(col('url')).cast('int')).withColumn('url_ks_phish',func_ks_phish_url_udf(col('url')).cast('double')).withColumn('url_bad_ks_phish',func_bad_ks_phish_url_udf(col('url')).cast('int')).withColumn('url_bad_words_domain',func_bad_words_domain_udf(col('url')).cast('int')).withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float')).withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(col('url')).cast('int')).withColumn('url_entropy_phish',func_entropy_phish_url_udf(col('url')).cast('float')).withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(col('url')).cast('int'))
 #
 ccrawl_trainds.printSchema()
 ccrawl_persist=ccrawl_trainds.coalesce(1).write.json(ccrawl_staged_file , mode="overwrite")
@@ -575,30 +550,7 @@ phishtank_traindf.printSchema()
 #
 drop_phish_cols=['details','online','phish_detail_url','phish_id','submission_time','target','verification_time']
 #
-phishtank_trainds=phishtank_traindf\
-.filter("url is not NULL")\
-.drop(*drop_phish_cols)\
-.withColumn('ynverified',func_url_verified_udf(col('verified')).cast('int'))\
-.drop('verified')\
-.withColumn('url_length',func_url_lengh_udf(col('url')).cast('int'))\
-.withColumn('massiveurl',func_url_big_udf(col('url')).cast('int'))\
-.withColumn('count_at',func_url_count_at_udf(col('url')).cast('int'))\
-.withColumn('count_dot',func_url_count_dot_udf(col('url')).cast('int'))\
-.withColumn('url_is_ip',func_url_is_ip_udf(col('url')).cast('int'))\
-.withColumn('count_dot_com',func_count_dot_com_udf(col('url')).cast('int'))\
-.withColumn('url_kl_en',func_kl_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_en',func_bad_kl_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_en',func_ks_en_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_en',func_bad_ks_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_kl_phish',func_kl_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_kl_phish',func_bad_kl_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_ks_phish',func_ks_phish_url_udf(col('url')).cast('double'))\
-.withColumn('url_bad_ks_phish',func_bad_ks_phish_url_udf(col('url')).cast('int'))\
-.withColumn('url_bad_words_domain',func_bad_words_domain_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(col('url')).cast('int'))\
-.withColumn('url_entropy_phish',func_entropy_phish_url_udf(col('url')).cast('float'))\
-.withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(col('url')).cast('int'))
+phishtank_trainds=phishtank_traindf.filter("url is not NULL").drop(*drop_phish_cols).withColumn('ynverified',func_url_verified_udf(col('verified')).cast('int')).drop('verified').withColumn('url_length',func_url_lengh_udf(col('url')).cast('int')).withColumn('massiveurl',func_url_big_udf(col('url')).cast('int')).withColumn('count_at',func_url_count_at_udf(col('url')).cast('int')).withColumn('count_dot',func_url_count_dot_udf(col('url')).cast('int')).withColumn('url_is_ip',func_url_is_ip_udf(col('url')).cast('int')).withColumn('count_dot_com',func_count_dot_com_udf(col('url')).cast('int')).withColumn('url_kl_en',func_kl_en_url_udf(col('url')).cast('double')).withColumn('url_bad_kl_en',func_bad_kl_en_url_udf(col('url')).cast('int')).withColumn('url_ks_en',func_ks_en_url_udf(col('url')).cast('double')).withColumn('url_bad_ks_en',func_bad_ks_en_url_udf(col('url')).cast('int')).withColumn('url_kl_phish',func_kl_phish_url_udf(col('url')).cast('double')).withColumn('url_bad_kl_phish',func_bad_kl_phish_url_udf(col('url')).cast('int')).withColumn('url_ks_phish',func_ks_phish_url_udf(col('url')).cast('double')).withColumn('url_bad_ks_phish',func_bad_ks_phish_url_udf(col('url')).cast('int')).withColumn('url_bad_words_domain',func_bad_words_domain_udf(col('url')).cast('int')).withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float')).withColumn('url_bad_entropy_en',func_bad_entropy_en_url_udf(col('url')).cast('int')).withColumn('url_entropy_phish',func_entropy_phish_url_udf(col('url')).cast('float')).withColumn('url_bad_entropy_phish',func_bad_entropy_phish_url_udf(col('url')).cast('int'))
 phishtank_trainds.printSchema()
 #
 phishtank_persist=phishtank_trainds.coalesce(1).write.json(phishtank_staged_file , mode="overwrite")
