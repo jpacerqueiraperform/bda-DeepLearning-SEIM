@@ -1,41 +1,223 @@
-/opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/connection.py:312: UserWarning: Proxy is defined in the environment: http_proxy. This may interfere with your H2O Connection.
-  "This may interfere with your H2O Connection." % name)
 Checking whether there is an H2O instance running at http://localhost:54321..... not found.
 Attempting to start a local H2O server...
   Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
   Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /tmp/tmp7gtz9v3f
-  JVM stdout: /tmp/tmp7gtz9v3f/h2o_siemanalyst_started_from_python.out
-  JVM stderr: /tmp/tmp7gtz9v3f/h2o_siemanalyst_started_from_python.err
+  Ice root: /tmp/tmpgb0ysd9r
+  JVM stdout: /tmp/tmpgb0ysd9r/h2o_siemanalyst_started_from_python.out
+  JVM stderr: /tmp/tmpgb0ysd9r/h2o_siemanalyst_started_from_python.err
   Server is running at http://127.0.0.1:54321
-Connecting to H2O server at http://127.0.0.1:54321...................... failed.
-H2OConnectionError: Could not establish link to the H2O cloud http://127.0.0.1:54321 after 20 retries
-[28:30.90] H2OServerError: HTTP 503 Service Unavailable:
-[28:31.10] H2OServerError: HTTP 503 Service Unavailable:
-[28:31.31] H2OServerError: HTTP 503 Service Unavailable:
-[28:31.52] H2OServerError: HTTP 503 Service Unavailable:
-[28:31.73] H2OServerError: HTTP 503 Service Unavailable:
-[28:31.94] H2OServerError: HTTP 503 Service Unavailable:
-[28:32.15] H2OServerError: HTTP 503 Service Unavailable:
-[28:32.35] H2OServerError: HTTP 503 Service Unavailable:
-[28:32.56] H2OServerError: HTTP 503 Service Unavailable:
-[28:32.77] H2OServerError: HTTP 503 Service Unavailable:
-[28:32.98] H2OServerError: HTTP 503 Service Unavailable:
-[28:33.18] H2OServerError: HTTP 503 Service Unavailable:
-[28:33.39] H2OServerError: HTTP 503 Service Unavailable:
-[28:33.60] H2OServerError: HTTP 503 Service Unavailable:
-[28:33.81] H2OServerError: HTTP 503 Service Unavailable:
-[28:34.01] H2OServerError: HTTP 503 Service Unavailable:
-[28:34.22] H2OServerError: HTTP 503 Service Unavailable:
-[28:34.43] H2OServerError: HTTP 503 Service Unavailable:
-[28:34.64] H2OServerError: HTTP 503 Service Unavailable:
-[28:34.84] H2OServerError: HTTP 503 Service Unavailable:
-                    in H2OConnection._test_connection(self, max_retries=5, messages=None) line 588
-                       H2OConnection.open(server=None, url=None, ip=None, port=None, https=None, auth=None,
-                                          verify_ssl_certificates=True, proxy=None, cookies=None, verbose=True,
-                                          _msgs=None) line 329
-                       init(url=None, ip=None, port=None, https=None, insecure=None, username=None, password=None,
-                            cookies=None, proxy=None, start_h2o=True, nthreads=-1, ice_root=None, enable_assertions=True,
-                            max_mem_size=None, min_mem_size=None, strict_version_check=None, ignore_config=False,
-                            extra_classpath=None, jvm_custom_args=None, bind_to_localhost=True, **kwargs) line 267
+Connecting to H2O server at http://127.0.0.1:54321... successful.
+--------------------------  ----------------------------------------
+H2O cluster uptime:         01 secs
+H2O cluster timezone:       UTC
+H2O data parsing timezone:  UTC
+H2O cluster version:        3.22.0.1
+H2O cluster version age:    1 month and 2 days
+H2O cluster name:           H2O_from_python_siemanalyst_f99l3q
+H2O cluster total nodes:    1
+H2O cluster free memory:    5.176 Gb
+H2O cluster total cores:    12
+H2O cluster allowed cores:  12
+H2O cluster status:         accepting new members, healthy
+H2O connection url:         http://127.0.0.1:54321
+H2O connection proxy:
+H2O internal security:      False
+H2O API Extensions:         XGBoost, Algos, AutoML, Core V3, Core V4
+Python version:             3.6.4 final
+--------------------------  ----------------------------------------
+root
+ |-- charset: string (nullable = true)
+ |-- digest: string (nullable = true)
+ |-- filename: string (nullable = true)
+ |-- languages: string (nullable = true)
+ |-- length: string (nullable = true)
+ |-- mime: string (nullable = true)
+ |-- mime-detected: string (nullable = true)
+ |-- offset: string (nullable = true)
+ |-- status: string (nullable = true)
+ |-- url: string (nullable = true)
 
+Traceback (most recent call last):
+  File "/home/siemanalyst/notebooks/siem/pyspark_model_data/version4-phishingURL-Clean-AUTOML-V4-BestModel-Discovery.py", line 563, in <module>
+    .withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float'))\
+NameError: name 'func_entropy_en_url_udf' is not defined
+H2O session _sid_a4b5 closed.
+Checking whether there is an H2O instance running at http://localhost:54321..... not found.
+Attempting to start a local H2O server...
+  Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
+  Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
+  Ice root: /tmp/tmpfd8w1rw4
+  JVM stdout: /tmp/tmpfd8w1rw4/h2o_siemanalyst_started_from_python.out
+  JVM stderr: /tmp/tmpfd8w1rw4/h2o_siemanalyst_started_from_python.err
+  Server is running at http://127.0.0.1:54321
+Connecting to H2O server at http://127.0.0.1:54321... successful.
+--------------------------  ----------------------------------------
+H2O cluster uptime:         01 secs
+H2O cluster timezone:       UTC
+H2O data parsing timezone:  UTC
+H2O cluster version:        3.22.0.1
+H2O cluster version age:    1 month and 2 days
+H2O cluster name:           H2O_from_python_siemanalyst_d1m0pl
+H2O cluster total nodes:    1
+H2O cluster free memory:    5.176 Gb
+H2O cluster total cores:    12
+H2O cluster allowed cores:  12
+H2O cluster status:         accepting new members, healthy
+H2O connection url:         http://127.0.0.1:54321
+H2O connection proxy:
+H2O internal security:      False
+H2O API Extensions:         XGBoost, Algos, AutoML, Core V3, Core V4
+Python version:             3.6.4 final
+--------------------------  ----------------------------------------
+root
+ |-- url: string (nullable = true)
+ |-- ynverified: long (nullable = true)
+ |-- url_length: long (nullable = true)
+ |-- massiveurl: long (nullable = true)
+ |-- count_at: long (nullable = true)
+ |-- count_dot: long (nullable = true)
+ |-- url_is_ip: long (nullable = true)
+ |-- count_dot_com: long (nullable = true)
+ |-- url_kl_en: double (nullable = true)
+ |-- url_bad_kl_en: long (nullable = true)
+ |-- url_ks_en: double (nullable = true)
+ |-- url_bad_ks_en: long (nullable = true)
+ |-- url_kl_phish: double (nullable = true)
+ |-- url_bad_kl_phish: long (nullable = true)
+ |-- url_ks_phish: double (nullable = true)
+ |-- url_bad_ks_phish: long (nullable = true)
+ |-- url_bad_words_domain: long (nullable = true)
+ |-- url_entropy_en: double (nullable = true)
+ |-- url_bad_entropy_en: long (nullable = true)
+ |-- url_entropy_phish: double (nullable = true)
+ |-- url_bad_entropy_phish: long (nullable = true)
+
+root
+ |-- url: string (nullable = true)
+ |-- ynverified: integer (nullable = true)
+ |-- url_length: integer (nullable = true)
+ |-- massiveurl: integer (nullable = true)
+ |-- count_at: integer (nullable = true)
+ |-- count_dot: integer (nullable = true)
+ |-- url_is_ip: integer (nullable = true)
+ |-- count_dot_com: integer (nullable = true)
+ |-- url_kl_en: double (nullable = true)
+ |-- url_bad_kl_en: integer (nullable = true)
+ |-- url_ks_en: double (nullable = true)
+ |-- url_bad_ks_en: integer (nullable = true)
+ |-- url_kl_phish: double (nullable = true)
+ |-- url_bad_kl_phish: integer (nullable = true)
+ |-- url_ks_phish: double (nullable = true)
+ |-- url_bad_ks_phish: integer (nullable = true)
+ |-- url_bad_words_domain: integer (nullable = true)
+ |-- url_entropy_en: double (nullable = true)
+ |-- url_bad_entropy_en: integer (nullable = true)
+ |-- url_entropy_phish: double (nullable = true)
+ |-- url_bad_entropy_phish: integer (nullable = true)
+
+root
+ |-- url: string (nullable = true)
+ |-- ynverified: integer (nullable = true)
+ |-- url_length: integer (nullable = true)
+ |-- massiveurl: integer (nullable = true)
+ |-- count_at: integer (nullable = true)
+ |-- count_dot: integer (nullable = true)
+ |-- url_is_ip: integer (nullable = true)
+ |-- count_dot_com: integer (nullable = true)
+ |-- url_kl_en: double (nullable = true)
+ |-- url_bad_kl_en: integer (nullable = true)
+ |-- url_ks_en: double (nullable = true)
+ |-- url_bad_ks_en: integer (nullable = true)
+ |-- url_kl_phish: double (nullable = true)
+ |-- url_bad_kl_phish: integer (nullable = true)
+ |-- url_ks_phish: double (nullable = true)
+ |-- url_bad_ks_phish: integer (nullable = true)
+ |-- url_bad_words_domain: integer (nullable = true)
+ |-- url_entropy_en: double (nullable = true)
+ |-- url_bad_entropy_en: integer (nullable = true)
+ |-- url_entropy_phish: double (nullable = true)
+ |-- url_bad_entropy_phish: integer (nullable = true)
+
+root
+ |-- url: string (nullable = true)
+ |-- ynverified: integer (nullable = true)
+ |-- url_length: integer (nullable = true)
+ |-- massiveurl: integer (nullable = true)
+ |-- count_at: integer (nullable = true)
+ |-- count_dot: integer (nullable = true)
+ |-- url_is_ip: integer (nullable = true)
+ |-- count_dot_com: integer (nullable = true)
+ |-- url_kl_en: double (nullable = true)
+ |-- url_bad_kl_en: integer (nullable = true)
+ |-- url_ks_en: double (nullable = true)
+ |-- url_bad_ks_en: integer (nullable = true)
+ |-- url_kl_phish: double (nullable = true)
+ |-- url_bad_kl_phish: integer (nullable = true)
+ |-- url_ks_phish: double (nullable = true)
+ |-- url_bad_ks_phish: integer (nullable = true)
+ |-- url_bad_words_domain: integer (nullable = true)
+ |-- url_entropy_en: double (nullable = true)
+ |-- url_bad_entropy_en: integer (nullable = true)
+ |-- url_entropy_phish: double (nullable = true)
+ |-- url_bad_entropy_phish: integer (nullable = true)
+
+root
+ |-- url: string (nullable = true)
+ |-- ynverified: integer (nullable = true)
+ |-- url_length: integer (nullable = true)
+ |-- massiveurl: integer (nullable = true)
+ |-- count_at: integer (nullable = true)
+ |-- count_dot: integer (nullable = true)
+ |-- url_is_ip: integer (nullable = true)
+ |-- count_dot_com: integer (nullable = true)
+ |-- url_kl_en: double (nullable = true)
+ |-- url_bad_kl_en: integer (nullable = true)
+ |-- url_ks_en: double (nullable = true)
+ |-- url_bad_ks_en: integer (nullable = true)
+ |-- url_kl_phish: double (nullable = true)
+ |-- url_bad_kl_phish: integer (nullable = true)
+ |-- url_ks_phish: double (nullable = true)
+ |-- url_bad_ks_phish: integer (nullable = true)
+ |-- url_bad_words_domain: integer (nullable = true)
+ |-- url_entropy_en: double (nullable = true)
+ |-- url_bad_entropy_en: integer (nullable = true)
+ |-- url_entropy_phish: double (nullable = true)
+ |-- url_bad_entropy_phish: integer (nullable = true)
+
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+train
+url                                        ynverified    url_length    massiveurl    count_at    count_dot    url_is_ip    count_dot_com    url_kl_en    url_bad_kl_en    url_ks_en    url_bad_ks_en    url_kl_phish    url_bad_kl_phish    url_ks_phish    url_bad_ks_phish    url_bad_words_domain    url_entropy_en    url_bad_entropy_en    url_entropy_phish    url_bad_entropy_phish
+---------------------------------------  ------------  ------------  ------------  ----------  -----------  -----------  ---------------  -----------  ---------------  -----------  ---------------  --------------  ------------------  --------------  ------------------  ----------------------  ----------------  --------------------  -------------------  -----------------------
+http://0.cn/                                        0            12             0           0            1            0                0     -81.2642                1    0.10749                  1        -10.3163                   0       0.534416                    0                       1         0.0771917                     0           0.00479274                        0
+http://0.cn/robots.txt                              0            22             0           0            2            0                0      85.8588                0    0.54074                  0        131.9                      1       0.54074                     0                       1         0.118763                      0           0.0830187                         0
+http://glortzrediffmail.0.cn/                       0            29             0           0            2            0                0     254.789                 1    0.972789                 0        212.462                    1       0.972789                    0                       0         0.0888557                     0           0.0773457                         0
+http://glortzrediffmail.0.cn/robots.txt             0            39             0           0            3            0                0     303.281                 1    0.943936                 0        305.849                    1       0.943936                    0                       0         0.0895893                     0           0.066725                          0
+http://0-0-0.cn/                                    0            16             0           0            1            0                0    -142.413                 1    0.0496544                1        -62.0097                   0       0.0496544                   1                       0         0.178259                      0           0.177603                          0
+http://0-0-0.cn/robots.txt                          0            26             0           0            2            0                0     -39.9272                1    0.425472                 1        -27.8402                   0       0.218166                    1                       0         0.128864                      0           0.118376                          0
+http://0-0-0.cn/robots.txt                          0            26             0           0            2            0                0     -39.9272                1    0.425472                 1        -27.8402                   0       0.218166                    1                       0         0.128864                      0           0.118376                          0
+http://0-0-0.cn/view.asp?id=470                     0            31             0           0            2            0                0    -110.365                 1    0.0505876                1       -232.331                    0       0.0505876                   1                       0         0.175403                      0           0.117448                          0
+http://0-0-0.cn/view.asp?id=476                     0            31             0           0            2            0                0    -108.468                 1    0.0505876                1       -230.947                    0       0.0505876                   1                       0         0.173363                      0           0.115346                          0
+http://0-0-0.cn/view.asp?id=477                     0            31             0           0            2            0                0    -108.085                 1    0.0505876                1       -230.649                    0       0.0505876                   1                       0         0.17306                       0           0.115033                          0
+
+[10 rows x 21 columns]
+
+test
+url                                                                                ynverified    url_length    massiveurl    count_at    count_dot    url_is_ip    count_dot_com    url_kl_en    url_bad_kl_en    url_ks_en    url_bad_ks_en    url_kl_phish    url_bad_kl_phish    url_ks_phish    url_bad_ks_phish    url_bad_words_domain    url_entropy_en    url_bad_entropy_en    url_entropy_phish    url_bad_entropy_phish
+-------------------------------------------------------------------------------  ------------  ------------  ------------  ----------  -----------  -----------  ---------------  -----------  ---------------  -----------  ---------------  --------------  ------------------  --------------  ------------------  ----------------------  ----------------  --------------------  -------------------  -----------------------
+http://velerszers.com/28359/9afa4c7d183ad3be1814ae5863a59499/                               1            61             0           0            1            0                1    -757.875                 1  7.84305e-06                1        -244.177                   0     0.00150733                    1                       0         0.0729392                     0            0.123284                         0
+http://velerszers.com/28359/9afa4c7d183ad3be1814ae5863a59499                                1            60             0           0            1            0                1    -757.875                 1  7.84305e-06                1        -244.177                   0     0.00150733                    1                       0         0.0729392                     0            0.123284                         0
+http://stsgroupbd.com/aug/ee/secure/cmd-login=d3993414284beca7c9d20faab65c690f/             1            79             0           0            1            0                1    -568.747                 1  0.000130907                1        -122.362                   0     0.000278609                   1                       0         0.0728177                     0            0.100008                         0
+http://stsgroupbd.com/aug/ee/secure/cmd-login=300308dff2f464ff22433eb64d8eb61f/             1            79             0           0            1            0                1    -579.733                 1  0.000130907                1        -227.502                   0     0.000278609                   1                       0         0.0792611                     0            0.0905584                        0
+http://www.miroslavopava.cz/media/system/js/validateotp.htm                                 1            59             0           0            3            0                0     408.304                 1  0.945549                   0         872.05                    1     0.652101                      0                       0         0.0654741                     0            0.097199                         0
+http://suelunn.com/aut.php?email=crl398@gmail.com                                           1            49             0           1            3            0                2      26.3968                0  0.738162                   0         323.174                   1     0.738162                      0                       0         0.0551491                     0            0.0643832                        0
+http://metaswitchweightloss.com/alibaba/alibaba/                                            1            48             0           0            1            0                1     366.07                  1  0.723665                   0         667.595                   1     0.361313                      1                       0         0.0663577                     0            0.0697863                        0
+http://odbiorcy.emoda.nnn.vc/login.php                                                      1            38             0           0            4            0                0     216.156                 1  0.999998                   0         293.179                   1     0.993644                      0                       0         0.0862164                     0            0.0917235                        0
+http://www.onefd.edu.dz.forexwinz.com/facebook/FR/login.php                                 1            59             0           0            6            0                1     291.321                 1  0.777684                   0         468.467                   1     0.777684                      0                       0         0.0890603                     0            0.0842165                        0
+http://tmsvent.ru/layouts/joomla/edit/js/1/                                                 1            43             0           0            1            0                0     166.841                 1  0.825316                   0         323.869                   1     0.621292                      0                       0         0.0661926                     0            0.0801017                        0
+
+[10 rows x 21 columns]
+
+AutoML progress: |███████████████████████████████████████████
