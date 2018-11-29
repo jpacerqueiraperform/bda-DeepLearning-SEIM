@@ -3,7 +3,8 @@ set hive.execution.engine=mr;
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
  url_kl_phish, url_bad_kl_phish,url_ks_phish,url_bad_ks_phish,url_bad_words_domain,url_entropy_en,url_bad_entropy_en,url_entropy_phish,url_bad_entropy_phish,
  ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag
-FROM siem.url_phishing_model4_prediction where url is not null  limit 80000 ;
+FROM siem.url_phishing_model4_prediction where ( dt=20181116 or dt=20181129) and url is not null  limit 80000 ;
+
 
 
 
