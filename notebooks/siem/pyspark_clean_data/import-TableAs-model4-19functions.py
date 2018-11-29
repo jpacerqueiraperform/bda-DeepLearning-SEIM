@@ -10,6 +10,7 @@ sparkSession = (SparkSession
                 .getOrCreate())
 
 process_date='20181116'
+#process_date='20181129'
 input_file="hdfs:///user/siemanalyst/data/staged/urltopredict/dt="+process_date
 #
 
