@@ -233,8 +233,8 @@ test[y] = test[y].asfactor()
 #
 # http://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html
 # Balance Classes to compensate unbalanced data
-# Run AutoML for 40 base models (limited to 1 hour max runtime by default)
-aml = H2OAutoML(max_models=25, seed=1999, balance_classes=True)
+# Run AutoML for 25 base models (limited to 1 hour max runtime by default)
+aml = H2OAutoML(max_models=25, seed=19, exclude_algos=["DRF","GLM"])
 aml.train(x=x, y=y, training_frame=train)
 #
 #sc.stop()
