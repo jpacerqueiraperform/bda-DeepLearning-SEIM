@@ -47,7 +47,7 @@ public class ScoreDataM4UDF extends GenericUDF {
     @Override
     public ObjectInspector initialize(ObjectInspector[] args) throws UDFArgumentException {
         // Get the MOJO as a resource
-        URL mojoURL = ScoreDataM4UDF.class.getResource("DRF_1_AutoML_20181124_233356.zip");
+        URL mojoURL = ScoreDataM4UDF.class.getResource("DRF_1_AutoML_20181129_143230.zip");
         // Declare r as a MojoReaderBackend
         MojoReaderBackend r;
         // Read the MOJO and assign it to p
