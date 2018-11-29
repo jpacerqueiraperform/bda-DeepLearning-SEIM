@@ -524,7 +524,7 @@ func_clean_url_append_uri_udf = udf (func_clean_url_append_uri, StringType())
 # GENERAL PREPARATION SCRIPT
 #
 #  Date in format YYYYMMDD
-process_date = "20181129"
+process_date = "20181116"
 #  CSV URL Variable name 
 url_var = 'url' # join of 'domain'+'uri'
 # Verification DataItem in Source File
