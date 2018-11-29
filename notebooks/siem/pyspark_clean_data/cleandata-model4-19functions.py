@@ -27,15 +27,6 @@ from pyspark.sql import Window, types
 # 
 sc = pyspark.SparkContext(appName="Daily-CleanData-Model4-SIEM")
 sqlContext = SQLContext(sc)
-#
-# -----------------------------------------------------------------------------
-#
-# GENERAL PREPARATION SCRIPT
-#
-#  Date in format YYYYMMDD
-#  CSV URL Variable ame 
-process_date = "20181116"
-url_var = 'domain'
 # 
 #
 # -----------------------------------------------------------------------------
@@ -502,20 +493,30 @@ func_url_verified_known_udf = udf(func_url_verified_known, IntegerType())
 def func_clean_url_append_uri(var1,var2):
     start=var1.strip('.')
     rst=start+"/"+str(var2).strip('/')
-    print(rst)
-    if rst[-1] == '/':rst = rst[:-1]
-    return rst
+#    print(rst)
+    if rst.endswith('/None'):
+        return rst[:-5]
+    elif rst.endswith('/'):
+        return rst[:-1]
+    else:
+        return rst
 func_clean_url_append_uri_udf = udf (func_clean_url_append_uri, StringType())    
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------    
 #
 #
+# -----------------------------------------------------------------------------
 #
+# GENERAL PREPARATION SCRIPT
+#
+#  Date in format YYYYMMDD
 process_date = "20181129"
+#  CSV URL Variable name 
 url_var = 'url' # join of 'domain'+'uri'
+# Verification DataItem in Source File
 verified_di = 'confidence_id'
-list_to_drop=['domain','trigger','category_name','confidence_id','uri']
 #
+list_to_drop=['domain','trigger','category_name','confidence_id','uri']
 #
 input_file="hdfs:///user/siemanalyst/data/raw/dailyurlingest/dt="+process_date+"/*.csv"
 output_file="hdfs:///user/siemanalyst/data/staged/urltopredict/dt="+process_date

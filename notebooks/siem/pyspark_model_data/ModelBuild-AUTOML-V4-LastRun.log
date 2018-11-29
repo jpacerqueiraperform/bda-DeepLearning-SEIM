@@ -4,73 +4,32 @@ Checking whether there is an H2O instance running at http://localhost:54321.....
 Attempting to start a local H2O server...
   Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
   Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /tmp/tmp5jj75vw6
-  JVM stdout: /tmp/tmp5jj75vw6/h2o_siemanalyst_started_from_python.out
-  JVM stderr: /tmp/tmp5jj75vw6/h2o_siemanalyst_started_from_python.err
+  Ice root: /tmp/tmp7gtz9v3f
+  JVM stdout: /tmp/tmp7gtz9v3f/h2o_siemanalyst_started_from_python.out
+  JVM stderr: /tmp/tmp7gtz9v3f/h2o_siemanalyst_started_from_python.err
   Server is running at http://127.0.0.1:54321
 Connecting to H2O server at http://127.0.0.1:54321...................... failed.
 H2OConnectionError: Could not establish link to the H2O cloud http://127.0.0.1:54321 after 20 retries
-[01:53.61] H2OServerError: HTTP 503 Service Unavailable:
-[01:53.81] H2OServerError: HTTP 503 Service Unavailable:
-[01:54.02] H2OServerError: HTTP 503 Service Unavailable:
-[01:54.23] H2OServerError: HTTP 503 Service Unavailable:
-[01:54.44] H2OServerError: HTTP 503 Service Unavailable:
-[01:54.65] H2OServerError: HTTP 503 Service Unavailable:
-[01:54.85] H2OServerError: HTTP 503 Service Unavailable:
-[01:55.06] H2OServerError: HTTP 503 Service Unavailable:
-[01:55.27] H2OServerError: HTTP 503 Service Unavailable:
-[01:55.47] H2OServerError: HTTP 503 Service Unavailable:
-[01:55.68] H2OServerError: HTTP 503 Service Unavailable:
-[01:55.89] H2OServerError: HTTP 503 Service Unavailable:
-[01:56.10] H2OServerError: HTTP 503 Service Unavailable:
-[01:56.30] H2OServerError: HTTP 503 Service Unavailable:
-[01:56.51] H2OServerError: HTTP 503 Service Unavailable:
-[01:56.72] H2OServerError: HTTP 503 Service Unavailable:
-[01:56.93] H2OServerError: HTTP 503 Service Unavailable:
-[01:57.14] H2OServerError: HTTP 503 Service Unavailable:
-[01:57.34] H2OServerError: HTTP 503 Service Unavailable:
-[01:57.55] H2OServerError: HTTP 503 Service Unavailable:
-                    in H2OConnection._test_connection(self, max_retries=5, messages=None) line 588
-                       H2OConnection.open(server=None, url=None, ip=None, port=None, https=None, auth=None,
-                                          verify_ssl_certificates=True, proxy=None, cookies=None, verbose=True,
-                                          _msgs=None) line 329
-                       init(url=None, ip=None, port=None, https=None, insecure=None, username=None, password=None,
-                            cookies=None, proxy=None, start_h2o=True, nthreads=-1, ice_root=None, enable_assertions=True,
-                            max_mem_size=None, min_mem_size=None, strict_version_check=None, ignore_config=False,
-                            extra_classpath=None, jvm_custom_args=None, bind_to_localhost=True, **kwargs) line 267
-
-/opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/connection.py:312: UserWarning: Proxy is defined in the environment: http_proxy. This may interfere with your H2O Connection.
-  "This may interfere with your H2O Connection." % name)
-Checking whether there is an H2O instance running at http://localhost:54321..... not found.
-Attempting to start a local H2O server...
-  Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
-  Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /tmp/tmp2jxy9sdr
-  JVM stdout: /tmp/tmp2jxy9sdr/h2o_siemanalyst_started_from_python.out
-  JVM stderr: /tmp/tmp2jxy9sdr/h2o_siemanalyst_started_from_python.err
-  Server is running at http://127.0.0.1:54321
-Connecting to H2O server at http://127.0.0.1:54321...................... failed.
-H2OConnectionError: Could not establish link to the H2O cloud http://127.0.0.1:54321 after 20 retries
-[02:17.07] H2OServerError: HTTP 503 Service Unavailable:
-[02:17.28] H2OServerError: HTTP 503 Service Unavailable:
-[02:17.50] H2OServerError: HTTP 503 Service Unavailable:
-[02:17.71] H2OServerError: HTTP 503 Service Unavailable:
-[02:17.92] H2OServerError: HTTP 503 Service Unavailable:
-[02:18.12] H2OServerError: HTTP 503 Service Unavailable:
-[02:18.34] H2OServerError: HTTP 503 Service Unavailable:
-[02:18.54] H2OServerError: HTTP 503 Service Unavailable:
-[02:18.75] H2OServerError: HTTP 503 Service Unavailable:
-[02:18.96] H2OServerError: HTTP 503 Service Unavailable:
-[02:19.17] H2OServerError: HTTP 503 Service Unavailable:
-[02:19.37] H2OServerError: HTTP 503 Service Unavailable:
-[02:19.58] H2OServerError: HTTP 503 Service Unavailable:
-[02:19.79] H2OServerError: HTTP 503 Service Unavailable:
-[02:19.00] H2OServerError: HTTP 503 Service Unavailable:
-[02:20.20] H2OServerError: HTTP 503 Service Unavailable:
-[02:20.41] H2OServerError: HTTP 503 Service Unavailable:
-[02:20.62] H2OServerError: HTTP 503 Service Unavailable:
-[02:20.83] H2OServerError: HTTP 503 Service Unavailable:
-[02:21.03] H2OServerError: HTTP 503 Service Unavailable:
+[28:30.90] H2OServerError: HTTP 503 Service Unavailable:
+[28:31.10] H2OServerError: HTTP 503 Service Unavailable:
+[28:31.31] H2OServerError: HTTP 503 Service Unavailable:
+[28:31.52] H2OServerError: HTTP 503 Service Unavailable:
+[28:31.73] H2OServerError: HTTP 503 Service Unavailable:
+[28:31.94] H2OServerError: HTTP 503 Service Unavailable:
+[28:32.15] H2OServerError: HTTP 503 Service Unavailable:
+[28:32.35] H2OServerError: HTTP 503 Service Unavailable:
+[28:32.56] H2OServerError: HTTP 503 Service Unavailable:
+[28:32.77] H2OServerError: HTTP 503 Service Unavailable:
+[28:32.98] H2OServerError: HTTP 503 Service Unavailable:
+[28:33.18] H2OServerError: HTTP 503 Service Unavailable:
+[28:33.39] H2OServerError: HTTP 503 Service Unavailable:
+[28:33.60] H2OServerError: HTTP 503 Service Unavailable:
+[28:33.81] H2OServerError: HTTP 503 Service Unavailable:
+[28:34.01] H2OServerError: HTTP 503 Service Unavailable:
+[28:34.22] H2OServerError: HTTP 503 Service Unavailable:
+[28:34.43] H2OServerError: HTTP 503 Service Unavailable:
+[28:34.64] H2OServerError: HTTP 503 Service Unavailable:
+[28:34.84] H2OServerError: HTTP 503 Service Unavailable:
                     in H2OConnection._test_connection(self, max_retries=5, messages=None) line 588
                        H2OConnection.open(server=None, url=None, ip=None, port=None, https=None, auth=None,
                                           verify_ssl_certificates=True, proxy=None, cookies=None, verbose=True,
