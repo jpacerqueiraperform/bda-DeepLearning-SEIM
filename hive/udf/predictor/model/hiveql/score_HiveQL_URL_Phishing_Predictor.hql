@@ -1,6 +1,14 @@
 set hive.execution.engine=mr;
 
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
+ url_kl_phish, url_bad_kl_phish,url_ks_phish,url_bad_ks_phish,url_bad_words_domain,url_entropy_en,url_bad_entropy_en,url_entropy_phish,url_bad_entropy_phish,
+ ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag
+FROM siem.url_phishing_model4_prediction where url is not null  limit 80000 ;
+
+
+
+
+SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en,
  ynverified as original_phishing_flag ,mdl_score_phishing as predicted_phishing_flag
 FROM siem.url_model3_score_predict where url is not null limit 10 ;
 
@@ -13,13 +21,13 @@ FROM siem.url_phishing_model4_prediction where url is not null  limit 80000 ;
 
 
 DELETE JAR h2o-genmodel.jar;
-DELETE JAR ScoreDataUDFAUTOML-3.0-SNAPSHOT.jar;
-ADD JAR hdfs:////user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/h2o-genmodel.jar;
-ADD JAR hdfs:///user/siemanalyst/predictor/udf/StackedEnsemble_AllModels_AutoML/ScoreDataUDFAUTOML-3.0-SNAPSHOT.jar;
-DROP TEMPORARY FUNCTION scoredatav1;
-DROP TEMPORARY FUNCTION scoredatav2;
-CREATE TEMPORARY FUNCTION scoredatav1 AS 'ai.h2o.hive.udf.ScoreDataM1UDF';
+DELETE JAR ScoreDataUDFAUTOML-4.0-SNAPSHOT.jar;
+ADD JAR hdfs:////user/siemanalyst/predictor/udf/h2o-genmodel.jar;
+ADD JAR hdfs:///user/siemanalyst/predictor/udf/ScoreDataUDFAUTOML-4.0-SNAPSHOT.jar;
+DROP TEMPORARY FUNCTION scoredatav3;
+DROP TEMPORARY FUNCTION scoredatav4;
 CREATE TEMPORARY FUNCTION scoredatav3 AS 'ai.h2o.hive.udf.ScoreDataM3UDF';
+CREATE TEMPORARY FUNCTION scoredatav4 AS 'ai.h2o.hive.udf.ScoreDataM4UDF';
 
 SELECT url, ynverified,url_length,massiveurl,count_at,count_dot,url_is_ip,
 count_dot_com,url_kl_en,url_bad_kl_en,url_ks_en,url_bad_ks_en
