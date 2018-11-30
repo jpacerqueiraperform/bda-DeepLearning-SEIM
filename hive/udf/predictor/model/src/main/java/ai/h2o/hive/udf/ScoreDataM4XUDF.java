@@ -28,7 +28,7 @@ import static hex.genmodel.MojoReaderBackendFactory.CachingStrategy;
 
 //Public please! https://community.hortonworks.com/questions/155891/simpleudfexample-and-error-genericudfbridge-cannot.html
 
-public class ScoreDataM4UDF extends GenericUDF {
+public class ScoreDataM4XUDF extends GenericUDF {
     private PrimitiveObjectInspector[] inFieldOI;
 
     MojoModel p;
@@ -47,7 +47,7 @@ public class ScoreDataM4UDF extends GenericUDF {
     @Override
     public ObjectInspector initialize(ObjectInspector[] args) throws UDFArgumentException {
         // Get the MOJO as a resource
-        URL mojoURL = ScoreDataM4UDF.class.getResource("StackedEnsemble_BestOfFamily_AutoML_20181130_010455.zip");
+        URL mojoURL = ScoreDataM4XUDF.class.getResource("XGBoost_grid_1_AutoML_20181129_193540_model_2.zip");
         // Declare r as a MojoReaderBackend
         MojoReaderBackend r;
         // Read the MOJO and assign it to p

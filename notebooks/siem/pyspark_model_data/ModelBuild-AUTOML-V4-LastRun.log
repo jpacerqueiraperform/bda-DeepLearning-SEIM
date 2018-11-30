@@ -2,18 +2,18 @@ Checking whether there is an H2O instance running at http://localhost:54321.....
 Attempting to start a local H2O server...
   Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
   Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /tmp/tmpee12czft
-  JVM stdout: /tmp/tmpee12czft/h2o_siemanalyst_started_from_python.out
-  JVM stderr: /tmp/tmpee12czft/h2o_siemanalyst_started_from_python.err
+  Ice root: /tmp/tmp1ulmgsk0
+  JVM stdout: /tmp/tmp1ulmgsk0/h2o_siemanalyst_started_from_python.out
+  JVM stderr: /tmp/tmp1ulmgsk0/h2o_siemanalyst_started_from_python.err
   Server is running at http://127.0.0.1:54321
 Connecting to H2O server at http://127.0.0.1:54321... successful.
 --------------------------  ----------------------------------------
-H2O cluster uptime:         02 secs
+H2O cluster uptime:         01 secs
 H2O cluster timezone:       UTC
 H2O data parsing timezone:  UTC
 H2O cluster version:        3.22.0.1
-H2O cluster version age:    1 month and 2 days
-H2O cluster name:           H2O_from_python_siemanalyst_lkh1at
+H2O cluster version age:    1 month and 3 days
+H2O cluster name:           H2O_from_python_siemanalyst_qmgmx5
 H2O cluster total nodes:    1
 H2O cluster free memory:    5.176 Gb
 H2O cluster total cores:    12
@@ -37,18 +37,79 @@ root
  |-- status: string (nullable = true)
  |-- url: string (nullable = true)
 
-Traceback (most recent call last):
-  File "/home/siemanalyst/notebooks/siem/pyspark_model_data/version4-phishingURL-Clean-AUTOML-V4-BestModel-Discovery.py", line 578, in <module>
-    .withColumn('url_entropy_en',func_entropy_en_url_udf(col('url')).cast('float'))\
-NameError: name 'func_entropy_en_url_udf' is not defined
-H2O session _sid_9b9a closed.
+root
+ |-- url: string (nullable = true)
+ |-- ynverified: integer (nullable = false)
+ |-- url_length: integer (nullable = true)
+ |-- massiveurl: integer (nullable = true)
+ |-- count_at: integer (nullable = true)
+ |-- count_dot: integer (nullable = true)
+ |-- url_is_ip: integer (nullable = true)
+ |-- count_dot_com: integer (nullable = true)
+ |-- url_kl_en: double (nullable = true)
+ |-- url_bad_kl_en: integer (nullable = true)
+ |-- url_ks_en: double (nullable = true)
+ |-- url_bad_ks_en: integer (nullable = true)
+ |-- url_kl_phish: double (nullable = true)
+ |-- url_bad_kl_phish: integer (nullable = true)
+ |-- url_ks_phish: double (nullable = true)
+ |-- url_bad_ks_phish: integer (nullable = true)
+ |-- url_bad_words_domain: integer (nullable = true)
+ |-- url_entropy_en: float (nullable = true)
+ |-- url_bad_entropy_en: integer (nullable = true)
+ |-- url_entropy_phish: float (nullable = true)
+ |-- url_bad_entropy_phish: integer (nullable = true)
+
+root
+ |-- details: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- announcing_network: string (nullable = true)
+ |    |    |-- cidr_block: string (nullable = true)
+ |    |    |-- country: string (nullable = true)
+ |    |    |-- detail_time: string (nullable = true)
+ |    |    |-- ip_address: string (nullable = true)
+ |    |    |-- rir: string (nullable = true)
+ |-- online: string (nullable = true)
+ |-- phish_detail_url: string (nullable = true)
+ |-- phish_id: string (nullable = true)
+ |-- submission_time: string (nullable = true)
+ |-- target: string (nullable = true)
+ |-- url: string (nullable = true)
+ |-- verification_time: string (nullable = true)
+ |-- verified: string (nullable = true)
+
+root
+ |-- url: string (nullable = true)
+ |-- ynverified: integer (nullable = true)
+ |-- url_length: integer (nullable = true)
+ |-- massiveurl: integer (nullable = true)
+ |-- count_at: integer (nullable = true)
+ |-- count_dot: integer (nullable = true)
+ |-- url_is_ip: integer (nullable = true)
+ |-- count_dot_com: integer (nullable = true)
+ |-- url_kl_en: double (nullable = true)
+ |-- url_bad_kl_en: integer (nullable = true)
+ |-- url_ks_en: double (nullable = true)
+ |-- url_bad_ks_en: integer (nullable = true)
+ |-- url_kl_phish: double (nullable = true)
+ |-- url_bad_kl_phish: integer (nullable = true)
+ |-- url_ks_phish: double (nullable = true)
+ |-- url_bad_ks_phish: integer (nullable = true)
+ |-- url_bad_words_domain: integer (nullable = true)
+ |-- url_entropy_en: float (nullable = true)
+ |-- url_bad_entropy_en: integer (nullable = true)
+ |-- url_entropy_phish: float (nullable = true)
+ |-- url_bad_entropy_phish: integer (nullable = true)
+
+Factor Calculation Done!
+H2O session _sid_b97a closed.
 Checking whether there is an H2O instance running at http://localhost:54321..... not found.
 Attempting to start a local H2O server...
   Java Version: java version "1.8.0_172"; Java(TM) SE Runtime Environment (build 1.8.0_172-b11); Java HotSpot(TM) 64-Bit Server VM (build 25.172-b11, mixed mode)
   Starting server from /opt/cloudera/parcels/Anaconda-5.1.0.1/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /tmp/tmp0ximakal
-  JVM stdout: /tmp/tmp0ximakal/h2o_siemanalyst_started_from_python.out
-  JVM stderr: /tmp/tmp0ximakal/h2o_siemanalyst_started_from_python.err
+  Ice root: /tmp/tmpnuyd2dds
+  JVM stdout: /tmp/tmpnuyd2dds/h2o_siemanalyst_started_from_python.out
+  JVM stderr: /tmp/tmpnuyd2dds/h2o_siemanalyst_started_from_python.err
   Server is running at http://127.0.0.1:54321
 Connecting to H2O server at http://127.0.0.1:54321... successful.
 --------------------------  ----------------------------------------
@@ -56,8 +117,8 @@ H2O cluster uptime:         01 secs
 H2O cluster timezone:       UTC
 H2O data parsing timezone:  UTC
 H2O cluster version:        3.22.0.1
-H2O cluster version age:    1 month and 2 days
-H2O cluster name:           H2O_from_python_siemanalyst_wdzv1l
+H2O cluster version age:    1 month and 3 days
+H2O cluster name:           H2O_from_python_siemanalyst_5c3ygs
 H2O cluster total nodes:    1
 H2O cluster free memory:    5.176 Gb
 H2O cluster total cores:    12
@@ -222,7 +283,7 @@ http://tmsvent.ru/layouts/joomla/edit/js/1/                                     
 
 AutoML progress: |████████████████████████████████████████████████████████| 100%
 Model Training Done!
-xgboost prediction progress: |████████████████████████████████████████████| 100%
+stackedensemble prediction progress: |████████████████████████████████████| 100%
 test
 url                                                                                                                                                                                                                  ynverified    url_length    massiveurl    count_at    count_dot    url_is_ip    count_dot_com    url_kl_en    url_bad_kl_en    url_ks_en    url_bad_ks_en    url_kl_phish    url_bad_kl_phish    url_ks_phish    url_bad_ks_phish    url_bad_words_domain    url_entropy_en    url_bad_entropy_en    url_entropy_phish    url_bad_entropy_phish
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  ------------  ------------  ------------  ----------  -----------  -----------  ---------------  -----------  ---------------  -----------  ---------------  --------------  ------------------  --------------  ------------------  ----------------------  ----------------  --------------------  -------------------  -----------------------
@@ -260,41 +321,41 @@ http://enemach-railtransit.com/include/decode/s6ts6yhjd.html                    
 [30 rows x 21 columns]
 
 prediction
-  predict          p0        p1
----------  ----------  --------
-        1  0.00919908  0.990801
-        1  0.00919908  0.990801
-        1  0.00420064  0.995799
-        1  0.00497627  0.995024
-        1  0.0591316   0.940868
-        1  0.00770533  0.992295
-        1  0.00505257  0.994947
-        1  0.01482     0.98518
-        1  0.00895816  0.991042
-        1  0.22111     0.77889
-        1  0.00500357  0.994996
-        1  0.00587755  0.994122
-        1  0.0164809   0.983519
-        1  0.00420606  0.995794
-        1  0.0511624   0.948838
-        1  0.023059    0.976941
-        1  0.0227248   0.977275
-        1  0.00333762  0.996662
-        1  0.00369102  0.996309
-        1  0.0282429   0.971757
-        1  0.032294    0.967706
-        1  0.00723809  0.992762
-        1  0.121184    0.878816
-        1  0.0932729   0.906727
-        1  0.00959963  0.9904
-        1  0.079687    0.920313
-        1  0.0290948   0.970905
-        1  0.0540873   0.945913
-        1  0.0560693   0.943931
-        1  0.1251      0.8749
+  predict         p0        p1
+---------  ---------  --------
+        1  0.016767   0.983233
+        1  0.0166916  0.983308
+        1  0.0155821  0.984418
+        1  0.0159792  0.984021
+        1  0.0204163  0.979584
+        1  0.0226511  0.977349
+        1  0.016333   0.983667
+        1  0.0178857  0.982114
+        1  0.0175966  0.982403
+        1  0.454518   0.545482
+        1  0.0159189  0.984081
+        1  0.0161877  0.983812
+        1  0.0192088  0.980791
+        1  0.0155928  0.984407
+        1  0.0329937  0.967006
+        1  0.0177797  0.98222
+        1  0.0234358  0.976564
+        1  0.0154266  0.984573
+        1  0.0154552  0.984545
+        1  0.0354404  0.96456
+        1  0.0549527  0.945047
+        1  0.0194951  0.980505
+        1  0.0447361  0.955264
+        1  0.0254278  0.974572
+        1  0.0196445  0.980356
+        1  0.0426393  0.957361
+        1  0.0175343  0.982466
+        1  0.0243216  0.975678
+        1  0.0247596  0.97524
+        1  0.0852859  0.914714
 
 [30 rows x 3 columns]
 
-['XGBoost_grid_1_AutoML_20181129_193540_model_2', 'GBM_4_AutoML_20181129_193540', 'StackedEnsemble_AllModels_AutoML_20181129_193540', 'StackedEnsemble_BestOfFamily_AutoML_20181129_193540', 'GBM_5_AutoML_20181129_193540', 'GBM_grid_1_AutoML_20181129_193540_model_3', 'XGBoost_3_AutoML_20181129_193540', 'XGBoost_2_AutoML_20181129_193540', 'GBM_3_AutoML_20181129_193540', 'GBM_2_AutoML_20181129_193540', 'GBM_grid_1_AutoML_20181129_193540_model_1', 'XGBoost_1_AutoML_20181129_193540', 'GBM_grid_1_AutoML_20181129_193540_model_2', 'GBM_1_AutoML_20181129_193540', 'XGBoost_grid_1_AutoML_20181129_193540_model_1', 'XGBoost_grid_1_AutoML_20181129_193540_model_4', 'XGBoost_grid_1_AutoML_20181129_193540_model_3', 'XGBoost_grid_1_AutoML_20181129_193540_model_6', 'XGBoost_grid_1_AutoML_20181129_193540_model_5', 'DeepLearning_grid_1_AutoML_20181129_193540_model_3', 'DeepLearning_grid_1_AutoML_20181129_193540_model_1', 'DeepLearning_grid_1_AutoML_20181129_193540_model_2', 'DeepLearning_1_AutoML_20181129_193540']
+['StackedEnsemble_BestOfFamily_AutoML_20181130_010455', 'XGBoost_grid_1_AutoML_20181130_010455_model_2', 'StackedEnsemble_AllModels_AutoML_20181130_010455', 'GBM_4_AutoML_20181130_010455', 'GBM_5_AutoML_20181130_010455', 'GBM_grid_1_AutoML_20181130_010455_model_3', 'XGBoost_3_AutoML_20181130_010455', 'XGBoost_2_AutoML_20181130_010455', 'GBM_3_AutoML_20181130_010455', 'GBM_2_AutoML_20181130_010455', 'GBM_grid_1_AutoML_20181130_010455_model_1', 'XGBoost_1_AutoML_20181130_010455', 'GBM_1_AutoML_20181130_010455', 'GBM_grid_1_AutoML_20181130_010455_model_2', 'XGBoost_grid_1_AutoML_20181130_010455_model_1', 'XGBoost_grid_1_AutoML_20181130_010455_model_4', 'GBM_grid_1_AutoML_20181130_010455_model_4', 'XGBoost_grid_1_AutoML_20181130_010455_model_3', 'XGBoost_grid_1_AutoML_20181130_010455_model_6', 'XGBoost_grid_1_AutoML_20181130_010455_model_5', 'DeepLearning_grid_1_AutoML_20181130_010455_model_3', 'DeepLearning_grid_1_AutoML_20181130_010455_model_1', 'DeepLearning_1_AutoML_20181130_010455', 'DeepLearning_grid_1_AutoML_20181130_010455_model_2']
 Model in folder /home/siemanalyst/notebooks/siem/product_model_bin/m25/v4/mojo
-H2O session _sid_a280 closed.
+H2O session _sid_b509 closed.
