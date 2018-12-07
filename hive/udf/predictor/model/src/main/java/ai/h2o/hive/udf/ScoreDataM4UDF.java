@@ -47,6 +47,7 @@ public class ScoreDataM4UDF extends GenericUDF {
     @Override
     public ObjectInspector initialize(ObjectInspector[] args) throws UDFArgumentException {
         // Get the MOJO as a resource
+        // PREVIOUS BEST // URL mojoURL = ScoreDataM4UDF.class.getResource("StackedEnsemble_AllModels_AutoML_20181207_142115.zip");
         URL mojoURL = ScoreDataM4UDF.class.getResource("StackedEnsemble_BestOfFamily_AutoML_20181130_010455.zip");
         // Declare r as a MojoReaderBackend
         MojoReaderBackend r;
