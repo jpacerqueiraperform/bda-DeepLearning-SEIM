@@ -3,6 +3,9 @@
 
 #set environment variables for Jupyter
 
+unset http_proxy
+unset https_proxy
+
 # user access active for user:userclass initiation services in hadoop
 #########################################################################################
 export KRB5CCNAME=/tmp/krb5cc_$(id -u)
@@ -21,6 +24,10 @@ export PYSPARK_DRIVER_PYTHON=jupyter
 export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
 export PYSPARK_PYTHON=/opt/cloudera/parcels/Anaconda/bin/python
 
-cd /home/oracle/notebooks/seim 
+# workarround h2o for http://localhost in notebook session
+# unset http_proxy
+# unset https_proxy
+
+cd /home/siemanalyst/notebooks/siem 
 rm jupyter.log nohup.out 
 nohup /opt/cloudera/parcels/Anaconda/bin/python3.6 /opt/cloudera/parcels/Anaconda/bin/jupyter notebook --port 9003 --no-browser --ip=0.0.0.0  2>jupyter.log & 
